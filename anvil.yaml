@@ -4,22 +4,27 @@ db_schema:
     client: none
     columns:
     - admin_ui: {width: 200}
-      name: id
-      type: number
-    - admin_ui: {width: 200}
       name: name
       type: string
     server: full
     title: brands
+  machine_type:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: model
+      type: string
+    - admin_ui: {width: 200}
+      name: brand
+      type: string
+    server: full
+    title: machine_type
   machines:
     client: none
     columns:
     - admin_ui: {width: 200}
-      name: id
-      type: number
-    - admin_ui: {width: 200}
       name: serial
-      type: number
+      type: string
     - admin_ui: {width: 200}
       name: type
       type: string
@@ -29,40 +34,129 @@ db_schema:
     - admin_ui: {width: 200}
       name: repairs
       type: string
-    - admin_ui: {width: 269}
+    - admin_ui: {width: 200}
+      name: code_angio
+      type: string
+    - admin_ui: {width: 200}
+      name: param_file
+      type: string
+    - admin_ui: {width: 200}
+      name: current_location
+      type: string
+    - admin_ui: {width: 200}
+      name: code_topo
+      type: string
+    - admin_ui: {width: 200}
       name: transfers
       type: string
     - admin_ui: {width: 200}
       name: calib_file
       type: string
     - admin_ui: {width: 200}
-      name: param_file
-      type: string
-    - admin_ui: {width: 200}
-      name: code_angio
-      type: string
-    - admin_ui: {width: 200}
       name: code_bio
-      type: string
-    - admin_ui: {width: 200}
-      name: code_topo
-      type: string
-    - admin_ui: {width: 200}
-      name: current_location
       type: string
     - admin_ui: {width: 200}
       name: current_status
       type: string
     server: full
     title: machines
-  stores:
+  repair_status:
     client: none
     columns:
     - admin_ui: {order: 0, width: 200}
-      name: id
-      type: number
+      name: repair_status
+      type: string
+    server: full
+    title: repair_status
+  repairs:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: date
+      type: string
+    - admin_ui: {order: 3.5, width: 310}
+      name: issue
+      type: string
+    - admin_ui: {order: 2, width: 140}
+      name: optopol_ticket
+      type: string
+    - admin_ui: {order: -1, width: 200}
+      name: serial
+      type: string
+    - admin_ui: {width: 200}
+      name: repair_status
+      type: string
+    - admin_ui: {width: 200}
+      name: technician
+      type: string
+    - admin_ui: {order: 3, width: 122}
+      name: optimed_job_number
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      name: technician_2
+      target: technicians
+      type: link_single
+    - admin_ui: {order: 7, width: 200}
+      name: repair_status_2
+      target: repair_status
+      type: link_single
+    - admin_ui: {order: -0.5, width: 200}
+      name: serial_2
+      target: machines
+      type: link_single
+    server: full
+    title: repairs
+  stores:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: store
+      type: string
+    - admin_ui: {width: 200}
+      name: opsm_store_code
+      type: string
+    - admin_ui: {width: 200}
+      name: state
+      type: string
+    - admin_ui: {width: 200}
+      name: transfers
+      type: string
     server: full
     title: stores
+  technicians:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: name
+      type: string
+    server: full
+    title: technicians
+  transfers:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: date
+      type: string
+    - admin_ui: {width: 200}
+      name: serial
+      type: string
+    - admin_ui: {width: 200}
+      name: status
+      type: string
+    - admin_ui: {width: 200}
+      name: technicians
+      type: string
+    - admin_ui: {width: 200}
+      name: store
+      type: string
+    - admin_ui: {width: 200}
+      name: notes
+      type: string
+    - admin_ui: {width: 200}
+      name: serialtext
+      type: string
+    server: full
+    title: transfers
 dependencies: []
 name: baserow_anvil
 package_name: baserow_anvil
