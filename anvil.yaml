@@ -1,10 +1,68 @@
 allow_embedding: false
 db_schema:
+  brands:
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: id
+      type: number
+    - admin_ui: {width: 200}
+      name: name
+      type: string
+    server: full
+    title: brands
   machines:
-    client: full
-    columns: []
+    client: none
+    columns:
+    - admin_ui: {width: 200}
+      name: id
+      type: number
+    - admin_ui: {width: 200}
+      name: serial
+      type: number
+    - admin_ui: {width: 200}
+      name: type
+      type: string
+    - admin_ui: {width: 200}
+      name: store
+      type: string
+    - admin_ui: {width: 200}
+      name: repairs
+      type: string
+    - admin_ui: {width: 269}
+      name: transfers
+      type: string
+    - admin_ui: {width: 200}
+      name: calib_file
+      type: string
+    - admin_ui: {width: 200}
+      name: param_file
+      type: string
+    - admin_ui: {width: 200}
+      name: code_angio
+      type: string
+    - admin_ui: {width: 200}
+      name: code_bio
+      type: string
+    - admin_ui: {width: 200}
+      name: code_topo
+      type: string
+    - admin_ui: {width: 200}
+      name: current_location
+      type: string
+    - admin_ui: {width: 200}
+      name: current_status
+      type: string
     server: full
     title: machines
+  stores:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: id
+      type: number
+    server: full
+    title: stores
 dependencies: []
 name: baserow_anvil
 package_name: baserow_anvil
@@ -16,7 +74,7 @@ runtime_options:
   version: 2
 services:
 - client_config: {}
-  server_config: {auto_create_missing_columns: true}
+  server_config: {auto_create_missing_columns: false}
   source: /runtime/services/tables.yml
 startup_form: Form1
 uplink_visible: true
