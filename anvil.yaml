@@ -1,7 +1,13 @@
 allow_embedding: false
+db_schema:
+  machines:
+    client: full
+    columns: []
+    server: full
+    title: machines
 dependencies: []
-name: Machines
-package_name: Machines
+name: baserow_anvil
+package_name: baserow_anvil
 renamed: true
 runtime_options:
   client_version: '3'
@@ -13,3 +19,4 @@ services:
   server_config: {auto_create_missing_columns: true}
   source: /runtime/services/tables.yml
 startup_form: Form1
+uplink_visible: true
