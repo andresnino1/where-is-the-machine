@@ -9,7 +9,7 @@ db_schema:
     server: full
     title: brands
   machine_type:
-    client: none
+    client: search
     columns:
     - admin_ui: {width: 200}
       name: model
@@ -107,7 +107,7 @@ db_schema:
     server: full
     title: repairs
   stores:
-    client: none
+    client: search
     columns:
     - admin_ui: {width: 200}
       name: store
@@ -170,5 +170,6 @@ services:
 - client_config: {enable_v2: false}
   server_config: {auto_create_missing_columns: true}
   source: /runtime/services/tables.yml
-startup_form: Form1
+startup: {module: form1, type: form}
+startup_form: null
 uplink_visible: true

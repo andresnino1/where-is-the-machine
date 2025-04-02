@@ -1,0 +1,31 @@
+from ._anvil_designer import form1Template
+from anvil import *
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
+import anvil.server
+
+
+class form1(form1Template):
+  def __init__(self, **properties):
+    # Set Form properties and Data Bindings.
+    self.init_components(**properties)
+
+    # Any code you write here will run before the form opens.
+
+  def dropdown_machine_type_show(self, **event_args):
+    self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
+    #self.dropdown_machine_type.include_placeholder=True
+    #self.dropdown_machine_type.placeholder="Chose Machine Model"
+    #self.dropdown_machine_type.selected_value=""
+    """This method is called when the DropDown is shown on the screen"""
+
+  def dropdown_machine_type_change(self, **event_args):
+    """This method is called when an item is selected"""
+    row = self.dropdown_machine_type.selected_value
+    print(row["model"])
+
+  def drop_down_store_show(self, **event_args):
+    self.drop_down_store.items = [(r["store"],r) for r in app_tables.stores.search()]
+    """This method is called when the DropDown is shown on the screen"""
+  
