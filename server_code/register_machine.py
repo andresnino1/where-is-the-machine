@@ -21,19 +21,19 @@ def register_machine(serial, type):
 
 @anvil.server.callable
 def migratedata():
-  for row in app_tables.machines.search():
-    string_value = row['store'] # columna que tiene el valor string en la tabla original
+  for row in app_tables.transfers.search():
+    string_value = row['serial'] # columna que tiene el valor string en la tabla original
     if string_value:
-      linked_row = app_tables.stores.get(store=string_value) # encontrar el valor en la tabla a donde estaran los links
+      linked_row = app_tables.machines.get(serial=string_value) # encontrar el valor en la tabla a donde estaran los links
       if not linked_row:
-        linked_row = app_tables.stores.add_row(model=string_value) # si no existe el valor se crea una fila con el nuevo texto como link
-      row['store_link'] = linked_row  # en esta columna se guardaran los textos convertirdos a links
+        linked_row = app_tables.machines.add_row(serial=string_value) # si no existe el valor se crea una fila con el nuevo texto como link
+      row['serial_link'] = linked_row  # en esta columna se guardaran los textos convertirdos a links
   print('migration finished')
 
-
+# this function remove the .0 extra zero in a column
 @anvil.server.callable
 def clean_zeros():
-  for row in app_tables.sampledata.search():  # Replace with your actual table name
+  for row in app_tables.transfers.search():  # Replace with your actual table name
         value = row['serial']  # Replace with your actual column name
         
         if isinstance(value, str) and value.endswith(".0"):

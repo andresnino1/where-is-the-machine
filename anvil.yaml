@@ -28,9 +28,17 @@ db_schema:
     - admin_ui: {width: 200}
       name: type
       type: string
-    - admin_ui: {order: -0.25, width: 341}
+    - admin_ui: {width: 200}
+      name: type_link
+      target: machine_type
+      type: link_single
+    - admin_ui: {width: 341}
       name: store
       type: string
+    - admin_ui: {width: 200}
+      name: store_link
+      target: stores
+      type: link_single
     - admin_ui: {width: 200}
       name: repairs
       type: string
@@ -58,20 +66,12 @@ db_schema:
     - admin_ui: {width: 200}
       name: current_status
       type: string
-    - admin_ui: {order: -0.375, width: 200}
-      name: type_link
-      target: machine_type
-      type: link_single
-    - admin_ui: {order: -0.125, width: 200}
-      name: store_link
-      target: stores
-      type: link_single
     server: full
     title: machines
   repair_status:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {width: 200}
       name: repair_status
       type: string
     server: full
@@ -80,52 +80,44 @@ db_schema:
     client: none
     columns:
     - admin_ui: {width: 200}
+      name: serial
+      type: string
+    - admin_ui: {width: 200}
+      name: serial_link
+      target: machines
+      type: link_single
+    - admin_ui: {width: 200}
       name: date
       type: string
-    - admin_ui: {order: 3.5, width: 310}
-      name: issue
-      type: string
-    - admin_ui: {order: 2, width: 140}
+    - admin_ui: {width: 140}
       name: optopol_ticket
       type: string
-    - admin_ui: {order: -1, width: 200}
-      name: serial
+    - admin_ui: {width: 122}
+      name: optimed_job_number
+      type: string
+    - admin_ui: {width: 310}
+      name: issue
       type: string
     - admin_ui: {width: 200}
       name: repair_status
       type: string
     - admin_ui: {width: 200}
-      name: technician
-      type: string
-    - admin_ui: {order: 3, width: 122}
-      name: optimed_job_number
-      type: string
-    - admin_ui: {order: 6, width: 200}
-      name: technician_link
-      target: technicians
-      type: link_single
-    - admin_ui: {order: 4.5, width: 200}
       name: repair_status_link
       target: repair_status
       type: link_single
-    - admin_ui: {order: -0.5, width: 200}
-      name: serial_link
-      target: machines
+    - admin_ui: {width: 200}
+      name: technician
+      type: string
+    - admin_ui: {width: 200}
+      name: technician_link
+      target: technicians
       type: link_single
     server: full
     title: repairs
-  sampledata:
-    client: none
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: serial
-      type: string
-    server: full
-    title: sampledata
   stores:
     client: search
     columns:
-    - admin_ui: {order: 0, width: 331}
+    - admin_ui: {width: 331}
       name: store
       type: string
     - admin_ui: {width: 200}
@@ -157,6 +149,10 @@ db_schema:
       name: serial
       type: string
     - admin_ui: {width: 200}
+      name: serial_link
+      target: machines
+      type: link_single
+    - admin_ui: {width: 200}
       name: status
       type: string
     - admin_ui: {width: 200}
@@ -165,11 +161,8 @@ db_schema:
     - admin_ui: {width: 200}
       name: store
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 5, width: 267}
       name: notes
-      type: string
-    - admin_ui: {width: 200}
-      name: serialtext
       type: string
     server: full
     title: transfers
