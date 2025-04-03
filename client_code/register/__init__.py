@@ -38,5 +38,5 @@ class register(registerTemplate):
       print ('serial si existe')
     else:
       # Machine is not in database -- need to be registered
-      anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type)
+      anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
       
