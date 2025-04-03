@@ -101,19 +101,27 @@ db_schema:
       name: optimed_job_number
       type: string
     - admin_ui: {order: 6, width: 200}
-      name: technician_2
+      name: technician_link
       target: technicians
       type: link_single
-    - admin_ui: {order: 7, width: 200}
-      name: repair_status_2
+    - admin_ui: {order: 4.5, width: 200}
+      name: repair_status_link
       target: repair_status
       type: link_single
     - admin_ui: {order: -0.5, width: 200}
-      name: serial_2
+      name: serial_link
       target: machines
       type: link_single
     server: full
     title: repairs
+  sampledata:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: serial
+      type: string
+    server: full
+    title: sampledata
   stores:
     client: search
     columns:
@@ -139,21 +147,6 @@ db_schema:
       type: string
     server: full
     title: technicians
-  testdata:
-    client: none
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: serial
-      type: string
-    - admin_ui: {order: 1, width: 200}
-      name: type
-      type: string
-    - admin_ui: {order: 2, width: 200}
-      name: type_1
-      target: machine_type
-      type: link_single
-    server: full
-    title: testdata
   transfers:
     client: none
     columns:

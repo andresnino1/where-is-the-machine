@@ -22,16 +22,24 @@ def register_machine(serial, type):
 @anvil.server.callable
 def migratedata():
   for row in app_tables.machines.search():
-    string_value = row['type'] # columna que tiene el valor string en la tabla original
+    string_value = row['store'] # columna que tiene el valor string en la tabla original
     if string_value:
-      linked_row = app_tables.machine_type.get(model=string_value) # encontrar el valor en la tabla que tiene el listado de los links a hacer
+      linked_row = app_tables.stores.get(store=string_value) # encontrar el valor en la tabla a donde estaran los links
       if not linked_row:
-        linked_row = app_tables.machine_type.add_row(model=string_value)
-      row['type_1'] = linked_row
+        linked_row = app_tables.stores.add_row(model=string_value) # si no existe el valor se crea una fila con el nuevo texto como link
+      row['store_link'] = linked_row  # en esta columna se guardaran los textos convertirdos a links
   print('migration finished')
 
-  
-  
+
+@anvil.server.callable
+def clean_zeros():
+  for row in app_tables.sampledata.search():  # Replace with your actual table name
+        value = row['serial']  # Replace with your actual column name
+        
+        if isinstance(value, str) and value.endswith(".0"):
+            row['serial'] = value[:-2]  # Remove last two characters
+  print('end of cleaning')
+
 
   
        
