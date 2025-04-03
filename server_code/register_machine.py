@@ -15,11 +15,21 @@ def register_machine(serial, type):
   app_tables.machines.add_row(serial=serial, type_1=type)
   print('registro exitoso')
 
+# this function converts the string data column to a link row data
+# esta funcion convierte la columna con valores de texto y crea una columna nueva
+# con valores con link a una tabla
+
 @anvil.server.callable
-def copy_type(s):
-  machine_row = app_tables.machines.get(serial=s)
-  id = machine_row.
-  print(id)
+def migratedata():
+  for row in app_tables.machines.search():
+    string_value = row['type'] # columna que tiene el valor string en la tabla original
+    if string_value:
+      linked_row = app_tables.machine_type.get(model=string_value) # encontrar el valor en la tabla que tiene el listado de los links a hacer
+      if not linked_row:
+        linked_row = app_tables.machine_type.add_row(model=string_value)
+      row['type_1'] = linked_row
+  print('migration finished')
+
   
   
 

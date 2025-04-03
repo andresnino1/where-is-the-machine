@@ -28,7 +28,7 @@ db_schema:
     - admin_ui: {width: 200}
       name: type
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {order: -0.25, width: 341}
       name: store
       type: string
     - admin_ui: {width: 200}
@@ -59,8 +59,12 @@ db_schema:
       name: current_status
       type: string
     - admin_ui: {order: -0.375, width: 200}
-      name: type_1
+      name: type_link
       target: machine_type
+      type: link_single
+    - admin_ui: {order: -0.125, width: 200}
+      name: store_link
+      target: stores
       type: link_single
     server: full
     title: machines
@@ -113,7 +117,7 @@ db_schema:
   stores:
     client: search
     columns:
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 0, width: 331}
       name: store
       type: string
     - admin_ui: {width: 200}
@@ -135,6 +139,21 @@ db_schema:
       type: string
     server: full
     title: technicians
+  testdata:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: serial
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: type
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: type_1
+      target: machine_type
+      type: link_single
+    server: full
+    title: testdata
   transfers:
     client: none
     columns:
