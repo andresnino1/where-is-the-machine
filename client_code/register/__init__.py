@@ -1,4 +1,4 @@
-from ._anvil_designer import form1Template
+from ._anvil_designer import registerTemplate
 from anvil import *
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -6,7 +6,7 @@ from anvil.tables import app_tables
 import anvil.server
 
 
-class form1(form1Template):
+class register(registerTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -28,4 +28,15 @@ class form1(form1Template):
   def drop_down_store_show(self, **event_args):
     self.drop_down_store.items = [(r["store"],r) for r in app_tables.stores.search()]
     """This method is called when the DropDown is shown on the screen"""
-  
+
+  def button_register_machine_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    find_serial = app_tables.machines.get(serial=self.input_serial.text)
+    if find_serial is not None:
+      # Machine exists in database
+      
+      print ('serial si existe')
+    else:
+      # Machine is not in database -- need to be registered
+      anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type)
+      

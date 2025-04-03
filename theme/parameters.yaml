@@ -7,7 +7,7 @@ color_scheme:
   - {color: '#486367', name: Secondary}
   - {color: '#63A2F2', name: Secondary Container}
   - {color: '#FFFFFF', name: On Secondary}
-  - {color: '#031F23', name: On Secondary Container}
+  - {color: '#FFFFFF', name: On Secondary Container}
   - {color: '#515E80', name: Tertiary}
   - {color: '#DAE2FF', name: Tertiary Container}
   - {color: '#FFFFFF', name: On Tertiary}
