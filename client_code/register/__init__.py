@@ -25,10 +25,6 @@ class register(registerTemplate):
     row = self.dropdown_machine_type.selected_value
     print(row["model"])
 
-  def drop_down_store_show(self, **event_args):
-    self.drop_down_store.items = [(r["store"],r) for r in app_tables.stores.search()]
-    """This method is called when the DropDown is shown on the screen"""
-
   def button_register_machine_click(self, **event_args):
     """This method is called when the button is clicked"""
     find_serial = app_tables.machines.get(serial=self.input_serial.text)

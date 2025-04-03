@@ -12,5 +12,18 @@ import anvil.server
 #
 @anvil.server.callable
 def register_machine(serial, type):
-  app_tables.machines.add_row(serial=serial, type=type)
+  app_tables.machines.add_row(serial=serial, type_1=type)
   print('registro exitoso')
+
+@anvil.server.callable
+def copy_type(s):
+  machine_row = app_tables.machines.get(serial=s)
+  id = machine_row.
+  print(id)
+  
+  
+
+  
+       
+
+  
