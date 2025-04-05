@@ -3,8 +3,9 @@ unique_ids:
     standard-page.html: GUOPL4ZPXXKRQ73MSBEACGXPSZEFRGYD
     theme.css: X53PPDW7525DEUY7FLIKV5QACOMC677E
   forms:
-    register: IYZNKVA6OLTQOKKS6AUGHCOPSAIVVHW4
+    register_codes: '174385063312236015415102.85467'
+    register_machine: IYZNKVA6OLTQOKKS6AUGHCOPSAIVVHW4
   modules: {}
   scripts: {}
   server_modules:
-    register_machine: '1743642561552859457967673.6405'
+    register_machine_db: '1743642561552859457967673.6405'
