@@ -5,6 +5,8 @@ unique_ids:
   forms:
     register_codes: '174385063312236015415102.85467'
     register_machine: IYZNKVA6OLTQOKKS6AUGHCOPSAIVVHW4
+    register_store: '1743851632258781347350050.0809'
+    transfer_machine: '174385158115587544810062.18051'
   modules: {}
   scripts: {}
   server_modules:

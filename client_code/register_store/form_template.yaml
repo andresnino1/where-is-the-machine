@@ -4,61 +4,45 @@ components:
     - {code: '', property: font, writeback: false}
     layout_properties: {grid_position: 'KVTBCN,WUBYFD'}
     name: label_1
-    properties: {align: center, bold: false, font_size: 30, spacing_above: large, spacing_below: large, text: Register Activation Codes, underline: false}
+    properties: {align: center, bold: false, font_size: 30, spacing_above: large, spacing_below: large, text: Register New Customer, underline: false}
     type: Label
   - data_bindings: []
     layout_properties: {grid_position: 'BYAHNZ,CAFYVY'}
     name: label_serial
-    properties: {font_size: 20, text: Machine Serial Number}
+    properties: {font_size: 20, text: Store / Customer Name}
     type: Label
   - data_bindings: []
     layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ PRKHRK,MZGPDU'}
     name: input_serial
-    properties: {background: 'theme:Light Overlay 1', placeholder: Search Serial Number}
+    properties: {background: 'theme:Light Overlay 1', placeholder: Search customer Name}
     type: TextBox
   - data_bindings: []
-    event_bindings: {change: dropdown_serial_change, show: dropdown_serial_show}
+    event_bindings: {change: dropdown_customer_change, show: dropdown_customer_show}
     layout_properties: {grid_position: 'BYAHNZ,VVBLTZ TTZEUX,XKVRQG'}
-    name: dropdown_serial
+    name: dropdown_customer
     properties: {enabled: true, include_placeholder: false, placeholder: Select Machine Model}
     type: DropDown
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL DVPNGU,TONHHQ'}
     name: label_customer
-    properties: {font_size: 20, text: Agiography}
+    properties: {font_size: 20, text: Store Code}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL YVEBSS,AOKTJM'}
     name: label_3
-    properties: {font_size: 20, text: Topography}
-    type: Label
-  - layout_properties: {grid_position: 'QVPXQU,JSGKFL VVLOZG,YVUAQO'}
-    name: label_4
-    properties: {font_size: 20, text: Biometry}
-    type: Label
-  - layout_properties: {grid_position: 'QVPXQU,JSGKFL EZDDLJ,OCNWKK'}
-    name: label_5
-    properties: {font_size: 20, text: UWF}
+    properties: {font_size: 20, text: State}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,TAQXJI LWFLRT,EWHFPO'}
-    name: input_angio
+    name: input_store_code
     properties: {}
     type: TextBox
   - layout_properties: {grid_position: 'QVPXQU,TAQXJI SMQPOC,OXASJM'}
     name: input_topo
     properties: {}
     type: TextBox
-  - layout_properties: {grid_position: 'QVPXQU,TAQXJI SDIXIM,FOIKFP'}
-    name: input_bio
-    properties: {}
-    type: TextBox
-  - layout_properties: {grid_position: 'QVPXQU,TAQXJI WIVMLV,YMUYJQ'}
-    name: input_uwf
-    properties: {}
-    type: TextBox
   - data_bindings: []
     event_bindings: {click: button_register_codes_click}
     layout_properties: {full_width_row: false, grid_position: 'ASAPPZ,PQNOZP'}
     name: button_register_codes
-    properties: {align: center, background: 'theme:On Primary Container', bold: false, font_size: 20, foreground: '#ffffff', icon: 'fa:arrow-circle-right', role: filled-button, spacing_above: large, spacing_below: large, text: Register Activation Codes}
+    properties: {align: center, background: 'theme:On Primary Container', bold: false, font_size: 20, foreground: '#ffffff', icon: 'fa:arrow-circle-right', role: filled-button, spacing_above: large, spacing_below: large, text: Register New Customer}
     type: Button
   layout_properties: {slot: default}
   name: content_panel

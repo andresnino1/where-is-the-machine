@@ -1,4 +1,4 @@
-from ._anvil_designer import register_codesTemplate
+from ._anvil_designer import register_storeTemplate
 from anvil import *
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -6,7 +6,7 @@ from anvil.tables import app_tables
 import anvil.server
 
 
-class register_codes(register_codesTemplate):
+class register_store(register_storeTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -14,7 +14,7 @@ class register_codes(register_codesTemplate):
 
     # Any code you write here will run before the form opens.
 
-  def dropdown_serial_show(self, **event_args):
+  def dropdown_customer_show(self, **event_args):
     self.dropdown_machine_type.items = [
       (r["model"], r) for r in app_tables.machine_type.search()
     ]
@@ -23,7 +23,7 @@ class register_codes(register_codesTemplate):
     # self.dropdown_machine_type.selected_value=""
     """This method is called when the DropDown is shown on the screen"""
 
-  def dropdown_serial_change(self, **event_args):
+  def dropdown_customer_change(self, **event_args):
     """This method is called when an item is selected"""
     row = self.dropdown_machine_type.selected_value
     print(row["model"])

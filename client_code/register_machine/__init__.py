@@ -5,6 +5,9 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
+# notas to do
+# implementar en el formulario que los campos no este activos si el serial existe
+# esto para que no haya la opcion de agregar el mismo serial
 
 class register_machine(register_machineTemplate):
   def __init__(self, **properties):
