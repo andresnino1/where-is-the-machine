@@ -10,6 +10,7 @@ class register(registerTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.button_register_customer.visible = False
 
     # Any code you write here will run before the form opens.
 
@@ -44,6 +45,16 @@ class register(registerTemplate):
       results = app_tables.stores.search(store=q.ilike(f"%{query}%"))
       self.drop_down_customer.items = [(r['store'],r) for r in results]
       self.drop_down_customer.visible = True
+      self.button_register_machine.visible = True
+      self.button_register_customer.visible = False
+      
+      
+      if [(r['store'],r) for r in results] == []:
+        self.drop_down_customer.visible = False
+        self.button_register_machine.visible = False
+        self.button_register_customer.visible = True
+      
+        
     else:
       self.drop_down_customer.items = []
       self.drop_down_customer.visible = False
