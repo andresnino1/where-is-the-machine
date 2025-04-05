@@ -4,37 +4,50 @@ components:
     - {code: '', property: font, writeback: false}
     layout_properties: {grid_position: 'KVTBCN,WUBYFD'}
     name: label_1
-    properties: {align: center, bold: false, font_size: 20, spacing_above: large, spacing_below: large, text: Register Machine, underline: false}
+    properties: {align: center, bold: false, font_size: 30, spacing_above: large, spacing_below: large, text: Register Machine, underline: false}
     type: Label
   - data_bindings: []
     layout_properties: {grid_position: 'BYAHNZ,CAFYVY'}
     name: label_serial
-    properties: {text: Machine Serial Number}
+    properties: {font_size: 20, text: Machine Serial Number}
     type: Label
   - data_bindings: []
-    layout_properties: {grid_position: 'BYAHNZ,VVBLTZ'}
+    layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ'}
     name: input_serial
     properties: {background: 'theme:Light Overlay 1'}
     type: TextBox
-  - layout_properties: {grid_position: 'TBWTPK,CUXJOH'}
+  - layout_properties: {grid_position: 'TBWTPK,CUXJOH PYNVIU,DRNUQT'}
     name: label_type
-    properties: {text: Machine Type}
+    properties: {font_size: 20, text: Machine Type}
+    type: Label
+  - layout_properties: {grid_position: 'TBWTPK,CUXJOH TIRSRX,ZRQJFY'}
+    name: label_customer
+    properties: {font_size: 20, text: Customer Name}
     type: Label
   - data_bindings: []
     event_bindings: {change: dropdown_machine_type_change, show: dropdown_machine_type_show}
-    layout_properties: {full_width_row: false, grid_position: 'TBWTPK,BKHACR'}
+    layout_properties: {full_width_row: false, grid_position: 'TBWTPK,BKHACR NQMYSM,HNLRRP'}
     name: dropdown_machine_type
     properties: {enabled: true, include_placeholder: false, placeholder: Select Machine Model}
+    type: DropDown
+  - event_bindings: {change: input_customer_change}
+    layout_properties: {grid_position: 'TBWTPK,BKHACR FGQSFB,NNZLVY'}
+    name: input_customer
+    properties: {placeholder: Search Customer's Name}
+    type: TextBox
+  - layout_properties: {grid_position: 'TBWTPK,BKHACR FGQSFB,XJLAWI'}
+    name: drop_down_customer
+    properties: {}
     type: DropDown
   - data_bindings: []
     event_bindings: {click: button_register_machine_click}
     layout_properties: {full_width_row: false, grid_position: 'ASAPPZ,PQNOZP'}
     name: button_register_machine
-    properties: {align: center, background: 'theme:On Primary Container', bold: false, foreground: '#ffffff', icon: 'fa:arrow-circle-right', role: filled-button, text: Register Machine}
+    properties: {align: center, background: 'theme:On Primary Container', bold: false, font_size: 20, foreground: '#ffffff', icon: 'fa:arrow-circle-right', role: filled-button, spacing_above: large, spacing_below: large, text: Register Machine}
     type: Button
   layout_properties: {slot: default}
   name: content_panel
-  properties: {background: '#ffffff', col_widths: '{}'}
+  properties: {background: '#ffffff', col_widths: '{"CAFYVY":20,"VVBLTZ":40,"CUXJOH":20,"BKHACR":40}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
@@ -43,7 +56,7 @@ components:
 - data_bindings: []
   layout_properties: {slot: title}
   name: label_2
-  properties: {align: left, background: '', border: '', foreground: '#ffffff', role: null, text: Where Is The Machine, tooltip: '', visible: true}
+  properties: {align: left, background: '', border: '', font_size: 30, foreground: '#ffffff', role: null, text: Where Is The Machine, tooltip: '', visible: true}
   type: Label
 container:
   properties: {background: '#ffffff', foreground: '', html: '@theme:standard-page.html', visible: true}
