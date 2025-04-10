@@ -27,7 +27,7 @@ class register_machine(register_machineTemplate):
     """This method is called when the text in this text box is edited"""
     serial_search = self.input_serial.text.strip()
 
-    if len(serial_search) > 4:
+    if len(serial_search) > 2:
       query_serial = app_tables.machines.search(serial=serial_search)
       self.label_type.visible = False
       self.dropdown_machine_type.visible = False
@@ -50,6 +50,15 @@ class register_machine(register_machineTemplate):
       else:
         print ([(s['serial'],s) for s in query_serial])
         print("serial existe")
+        self.label_type.visible = False
+        self.dropdown_machine_type.visible = False
+        self.label_customer.visible = False
+        self.input_customer.visible = False
+        self.drop_down_customer.visible = False
+        self.button_register_customer.visible = False
+        self.button_register_machine.visible = False
+    
+    else:
         self.label_type.visible = False
         self.dropdown_machine_type.visible = False
         self.label_customer.visible = False
