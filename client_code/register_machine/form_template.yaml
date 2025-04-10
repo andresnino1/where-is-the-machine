@@ -12,6 +12,7 @@ components:
     properties: {font_size: 20, text: Machine Serial Number}
     type: Label
   - data_bindings: []
+    event_bindings: {change: input_serial_change}
     layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ'}
     name: input_serial
     properties: {background: 'theme:Light Overlay 1'}
