@@ -26,7 +26,7 @@ class register_machine(register_machineTemplate):
     serial_search = self.input_serial.text.strip()
 
     if len(serial_search) > 2:
-      query_serial = app_tables.machines.search(serial=serial_search)
+      query_serial = app_tables.machines.search(serial=serial_search) # search the serial in database
       self.label_type.visible = False
       self.dropdown_machine_type.visible = False
       self.label_customer.visible = False
@@ -52,8 +52,8 @@ class register_machine(register_machineTemplate):
         self.button_register_machine.visible = True
         self.label_message.visible = False
 
-        
         def dropdown_machine_type_show(self, **event_args):
+          # Listado de los tipos de maquinas en el menu dropdown
           self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
           #self.dropdown_machine_type.include_placeholder=True
           #self.dropdown_machine_type.placeholder="Chose Machine Model"
@@ -65,18 +65,6 @@ class register_machine(register_machineTemplate):
           row = self.dropdown_machine_type.selected_value
           print(row["model"])
 
-        def button_register_machine_click(self, **event_args):
-          """This method is called when the button is clicked"""
-          find_serial = app_tables.machines.get(serial=self.input_serial.text)
-          if find_serial is not None:
-            # Machine exists in database
-            
-            print ('serial si existe')
-          else:
-            # Machine is not in database -- need to be registered
-            anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
-
-
         def input_customer_change(self, **event_args):
           """This method is called when the text in this text box is edited"""
           query = self.input_customer.text.strip()
@@ -87,25 +75,32 @@ class register_machine(register_machineTemplate):
             self.drop_down_customer.visible = True
             self.button_register_machine.visible = True
             self.button_register_customer.visible = False
-            
-            
+                 
             if [(r['store'],r) for r in results] == []:
               self.drop_down_customer.visible = False
               self.button_register_machine.visible = False
               self.button_register_customer.visible = True
             
-              
           else:
             self.drop_down_customer.items = []
             self.drop_down_customer.visible = False
+        
+        def button_register_machine_click(self, **event_args):
+            """This method is called when the button is clicked"""
+            find_serial = app_tables.machines.get(serial=self.input_serial.text)
+            if find_serial is not None:
+              # Machine exists in database
+              
+              print ('serial si existe')
+            else:
+              # Machine is not in database -- need to be registered
+              anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
+
     
-    
-            
-            
       else:
         # serial existe, se deshabilitan los capos para que
         # no se puede agregar un duplicado
-        print ([(s['serial'],s) for s in query_serial])
+        # print ([(s['serial'],s) for s in query_serial]) # imprime columna serial
         print("serial existe")
         self.label_type.visible = False
         self.dropdown_machine_type.visible = False
