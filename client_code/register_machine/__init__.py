@@ -123,5 +123,11 @@ class register_machine(register_machineTemplate):
         self.button_register_customer.visible = False
         self.button_register_machine.visible = False
         self.label_message.visible = False
+
+  def link_new_store_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    open_form('register_store')
+
+
       
       

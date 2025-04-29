@@ -59,7 +59,13 @@ components:
   name: content_panel
   properties: {background: '#ffffff', col_widths: '{"CAFYVY":20,"VVBLTZ":40,"CUXJOH":20,"BKHACR":40}'}
   type: ColumnPanel
-- layout_properties: {slot: nav-right}
+- components:
+  - event_bindings: {click: link_new_store_click}
+    layout_properties: {}
+    name: link_new_store
+    properties: {text: New Store}
+    type: Link
+  layout_properties: {slot: nav-right}
   name: navbar_links
   properties: {background: 'theme:Surface'}
   type: FlowPanel
