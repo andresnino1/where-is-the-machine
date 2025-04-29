@@ -5,7 +5,10 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-
+#TODO
+# - implementar que se debe seleccionar un tipo de machine
+# si se deja en blanco debe indicarse con un mensaje
+# arreglar la busqueda de STORE y autocompletar el dropdown menu
 
 class register_machine(register_machineTemplate):
   def __init__(self, **properties):
@@ -52,18 +55,7 @@ class register_machine(register_machineTemplate):
         self.button_register_machine.visible = True
         self.label_message.visible = False
 
-        def dropdown_machine_type_show(self, **event_args):
-          # Listado de los tipos de maquinas en el menu dropdown
-          self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
-          #self.dropdown_machine_type.include_placeholder=True
-          #self.dropdown_machine_type.placeholder="Chose Machine Model"
-          #self.dropdown_machine_type.selected_value=""
-          """This method is called when the DropDown is shown on the screen"""
-
-        def dropdown_machine_type_change(self, **event_args):
-          """This method is called when an item is selected"""
-          row = self.dropdown_machine_type.selected_value
-          print(row["model"])
+        
 
         def input_customer_change(self, **event_args):
           """This method is called when the text in this text box is edited"""
@@ -127,6 +119,30 @@ class register_machine(register_machineTemplate):
   def link_new_store_click(self, **event_args):
     """This method is called when the link is clicked"""
     open_form('register_store')
+
+  def dropdown_machine_type_change(self, **event_args):
+    """This method is called when an item is selected"""
+    row = self.dropdown_machine_type.selected_value
+    # print(row["model"])
+
+  def dropdown_machine_type_show(self, **event_args):
+    """This method is called when the DropDown is shown on the screen"""
+    self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
+    self.dropdown_machine_type.include_placeholder=True
+    self.dropdown_machine_type.placeholder="Chose Machine Model"
+    #self.dropdown_machine_type.selected_value=""
+
+  def input_customer_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    pass
+
+  def button_register_machine_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def home_link_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    open_form('register_machine')
 
 
       

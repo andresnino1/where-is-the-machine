@@ -12,6 +12,7 @@ components:
     properties: {font_size: 20, text: Store / Customer Name}
     type: Label
   - data_bindings: []
+    event_bindings: {change: input_store_change}
     layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ PRKHRK,MZGPDU'}
     name: input_store
     properties: {background: 'theme:Light Overlay 1', placeholder: Search customer Name}
@@ -48,16 +49,26 @@ components:
   name: content_panel
   properties: {background: '#ffffff', col_widths: '{"CAFYVY":20,"VVBLTZ":40,"JSGKFL":20,"TAQXJI":40}'}
   type: ColumnPanel
-- components: []
+- components:
+  - event_bindings: {click: link_new_store_click}
+    layout_properties: {}
+    name: link_new_store
+    properties: {foreground: 'theme:On Primary', text: New Store}
+    type: Link
   layout_properties: {slot: nav-right}
-  name: navbar_links
-  properties: {background: 'theme:Surface'}
+  name: flow_panel_2
+  properties: {}
   type: FlowPanel
-- data_bindings: []
+- components:
+  - event_bindings: {click: link_home_click}
+    layout_properties: {}
+    name: link_home
+    properties: {font_size: 30, foreground: 'theme:On Primary', text: Where Is The Machine}
+    type: Link
   layout_properties: {slot: title}
-  name: label_2
-  properties: {align: left, background: '', border: '', font_size: 30, foreground: '#ffffff', role: null, text: Where Is The Machine, tooltip: '', visible: true}
-  type: Label
+  name: flow_panel_1
+  properties: {}
+  type: FlowPanel
 container:
   properties: {background: '#ffffff', foreground: '', html: '@theme:standard-page.html', visible: true}
   type: HtmlTemplate

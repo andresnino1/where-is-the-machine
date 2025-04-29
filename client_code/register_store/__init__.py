@@ -5,6 +5,9 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
+# TODO
+# Al completar la busqueda por nombre en el menu dropdown no se filtra
+# y salen otras opciones tambien - se debe arreglar esto
 
 class register_store(register_storeTemplate):
   def __init__(self, **properties):
@@ -19,18 +22,18 @@ class register_store(register_storeTemplate):
 
     if len(search_store) > 1:
       results = app_tables.stores.search(store=q.ilike(f"%{search_store}%"))
-      self.drop_down_store.items = [(r["store"], r) for r in results]
+      self.dropdown_store.items = [(r["store"], r) for r in results]
       # print ([(r['store'],r) for r in results])
-      self.drop_down_store.visible = True
+      self.dropdown_store.visible = True
       self.button_register_store.visible = False
 
       if [(r["store"], r) for r in results] == []:
-        self.drop_down_store.visible = False
+        self.dropdown_store.visible = False
         self.button_register_store.visible = True
 
     else:
-      self.drop_down_store.items = []
-      self.drop_down_store.visible = False
+      self.dropdown_store.items = []
+      self.dropdown_store.visible = False
 
   def dropdown_store_show(self, **event_args):
     self.dropdown_store.items = [
@@ -61,6 +64,14 @@ class register_store(register_storeTemplate):
     #     self.input_serial.text,
     #     self.dropdown_machine_type.selected_value,
     #   )
+
+  def link_home_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    open_form('register_machine')
+
+  def link_new_store_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    open_form('register_store')
 
 
 

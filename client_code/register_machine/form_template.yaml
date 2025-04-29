@@ -69,11 +69,11 @@ components:
   name: navbar_links
   properties: {background: 'theme:Surface'}
   type: FlowPanel
-- data_bindings: []
+- event_bindings: {click: home_link_click}
   layout_properties: {slot: title}
-  name: label_2
-  properties: {align: left, background: '', border: '', font_size: 30, foreground: '#ffffff', role: null, text: Where Is The Machine, tooltip: '', visible: true}
-  type: Label
+  name: home_link
+  properties: {font_size: 30, foreground: 'theme:On Secondary', text: Where Is The Machine}
+  type: Link
 container:
   properties: {background: '#ffffff', foreground: '', html: '@theme:standard-page.html', visible: true}
   type: HtmlTemplate
