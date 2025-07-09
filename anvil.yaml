@@ -167,8 +167,9 @@ db_schema:
     server: full
     title: transfers
 dependencies: []
-name: baserow_anvil
-package_name: baserow_anvil
+metadata: {description: Service Tech Tracking System, title: Where Is The Machine}
+name: Where_Is_The_Machine
+package_name: Where_Is_The_Machine
 renamed: true
 runtime_options:
   client_version: '3'
