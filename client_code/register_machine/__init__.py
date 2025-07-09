@@ -23,15 +23,13 @@ class register_machine(register_machineTemplate):
     self.button_register_machine.visible = False
     self.label_message.visible = False
   
-
+# ======================  Input Serial Change Function ==============================
   def input_serial_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
     serial_search = self.input_serial.text.strip()
     
-
     if len(serial_search) > 2:
       self.search_machine_serial(serial_search) # function that search machine serial
-      
 
     else:
       # si el serial es menor que 2 digitos mantiene todos los campos ocultos
@@ -44,31 +42,64 @@ class register_machine(register_machineTemplate):
         self.button_register_machine.visible = False
         self.label_message.visible = False
 
-  def link_new_store_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    open_form('register_store')
 
-  def dropdown_machine_type_change(self, **event_args):
-  #   """This method is called when an item is selected"""
-  #   row = self.dropdown_machine_type.selected_value
-  #   # print(row["model"])
-    pass
+# ================ DropDown Machine Type Show Function ==================
 
   def dropdown_machine_type_show(self, **event_args):
-  #   """This method is called when the DropDown is shown on the screen"""
-  #   self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
-  #   self.dropdown_machine_type.include_placeholder=True
-  #   self.dropdown_machine_type.placeholder="Chose Machine Model"
-  #   #self.dropdown_machine_type.selected_value=""
-    pass
+    """This method is called when the DropDown is shown on the screen"""
+    self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
+    self.dropdown_machine_type.include_placeholder=True
+    self.dropdown_machine_type.placeholder="Chose Machine Model"
+    # self.dropdown_machine_type.selected_value=""
 
+  
+  # ================ DropDown Mahine Type Change Function ==============
+  
+  def dropdown_machine_type_change(self, **event_args):
+    #   """This method is called when an item is selected"""
+    row = self.dropdown_machine_type.selected_value
+    print(row["model"])
+
+
+  
+# =================== Input Customer Change Function ==========================
+  
   def input_customer_change(self, **event_args):
-  #   """This method is called when the text in this text box is edited"""
-    pass
+    """This method is called when the text in this text box is edited"""
+    query = self.input_customer.text.strip()
+  
+    if len(query) > 1:
+      results = app_tables.stores.search(store=q.ilike(f"%{query}%"))
+      self.drop_down_customer.items = [(r['store'],r) for r in results]
+      self.drop_down_customer.visible = True
+      self.button_register_machine.visible = True
+      self.button_register_customer.visible = False
+  
+      if [(r['store'],r) for r in results] == []:
+        self.drop_down_customer.visible = False
+        self.button_register_machine.visible = False
+        self.button_register_customer.visible = True
+  
+    else:
+      self.drop_down_customer.items = []
+      self.drop_down_customer.visible = False
+  
+      
 
+# =============== Button Register Machine Click Function ==============
+      
   def button_register_machine_click(self, **event_args):
-  #   """This method is called when the button is clicked"""
-    pass
+    """This method is called when the button is clicked"""
+    find_serial = app_tables.machines.get(serial=self.input_serial.text)
+    if find_serial is not None:
+      # Machine exists in database
+
+      print ('serial si existe')
+    else:
+      # Machine is not in database -- need to be registered
+      print ('machine is not in database.. call server here')
+      # anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
+
 
   def home_link_click(self, **event_args):
   #   """This method is called when the link is clicked"""
@@ -107,36 +138,36 @@ class register_machine(register_machineTemplate):
       self.label_message.visible = False
 
 
-      def input_customer_change(self, **event_args):
-        """This method is called when the text in this text box is edited"""
-        query = self.input_customer.text.strip()
+      # def input_customer_change(self, **event_args):
+      #   """This method is called when the text in this text box is edited"""
+      #   query = self.input_customer.text.strip()
 
-        if len(query) > 1:
-          results = app_tables.stores.search(store=q.ilike(f"%{query}%"))
-          self.drop_down_customer.items = [(r['store'],r) for r in results]
-          self.drop_down_customer.visible = True
-          self.button_register_machine.visible = True
-          self.button_register_customer.visible = False
+      #   if len(query) > 1:
+      #     results = app_tables.stores.search(store=q.ilike(f"%{query}%"))
+      #     self.drop_down_customer.items = [(r['store'],r) for r in results]
+      #     self.drop_down_customer.visible = True
+      #     self.button_register_machine.visible = True
+      #     self.button_register_customer.visible = False
 
-          if [(r['store'],r) for r in results] == []:
-            self.drop_down_customer.visible = False
-            self.button_register_machine.visible = False
-            self.button_register_customer.visible = True
+      #     if [(r['store'],r) for r in results] == []:
+      #       self.drop_down_customer.visible = False
+      #       self.button_register_machine.visible = False
+      #       self.button_register_customer.visible = True
 
-        else:
-          self.drop_down_customer.items = []
-          self.drop_down_customer.visible = False
+      #   else:
+      #     self.drop_down_customer.items = []
+      #     self.drop_down_customer.visible = False
 
-      def button_register_machine_click(self, **event_args):
-        """This method is called when the button is clicked"""
-        find_serial = app_tables.machines.get(serial=self.input_serial.text)
-        if find_serial is not None:
-          # Machine exists in database
+      # def button_register_machine_click(self, **event_args):
+      #   """This method is called when the button is clicked"""
+      #   find_serial = app_tables.machines.get(serial=self.input_serial.text)
+      #   if find_serial is not None:
+      #     # Machine exists in database
 
-          print ('serial si existe')
-        else:
-          # Machine is not in database -- need to be registered
-          anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
+      #     print ('serial si existe')
+      #   else:
+      #     # Machine is not in database -- need to be registered
+      #     anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
 
 
     else:
@@ -157,7 +188,13 @@ class register_machine(register_machineTemplate):
       print("serial existe 2")
 
 
-  
+  def link_new_store_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    open_form('register_store')
+
+
+
+
 
 
 
