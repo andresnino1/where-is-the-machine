@@ -22,8 +22,8 @@ components:
     properties: {font_size: 20, text: Machine Type}
     type: Label
   - layout_properties: {grid_position: 'TBWTPK,CUXJOH TIRSRX,ZRQJFY'}
-    name: label_customer
-    properties: {font_size: 20, text: Customer Name}
+    name: label_store
+    properties: {font_size: 20, text: Customer / Store Name}
     type: Label
   - data_bindings: []
     event_bindings: {change: dropdown_machine_type_change, show: dropdown_machine_type_show}
@@ -31,18 +31,19 @@ components:
     name: dropdown_machine_type
     properties: {enabled: true, include_placeholder: false, placeholder: Select Machine Model}
     type: DropDown
-  - event_bindings: {change: input_customer_change}
+  - event_bindings: {change: input_store_change}
     layout_properties: {grid_position: 'TBWTPK,BKHACR FGQSFB,NNZLVY'}
-    name: input_customer
-    properties: {placeholder: Search Customer's Name}
+    name: input_store
+    properties: {placeholder: Search Store's Name}
     type: TextBox
-  - layout_properties: {grid_position: 'TBWTPK,BKHACR FGQSFB,XJLAWI ADVLDB,WEFAGV'}
-    name: drop_down_customer
+  - event_bindings: {change: dropdown_store_change}
+    layout_properties: {grid_position: 'TBWTPK,BKHACR FGQSFB,XJLAWI ADVLDB,WEFAGV'}
+    name: dropdown_store
     properties: {}
     type: DropDown
   - layout_properties: {grid_position: 'TBWTPK,BKHACR FGQSFB,XJLAWI HNNJWU,XBAEFM'}
-    name: button_register_customer
-    properties: {font_size: 15, icon: 'fa:address-book-o', role: outlined-button, text: Register New Customer}
+    name: button_register_store
+    properties: {font_size: 15, icon: 'fa:address-book-o', role: outlined-button, text: Register New Store}
     type: Button
   - data_bindings: []
     event_bindings: {click: button_register_machine_click}
