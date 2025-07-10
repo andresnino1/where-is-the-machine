@@ -173,8 +173,8 @@ class register_machine(register_machineTemplate):
     else:
       # serial existe, se deshabilitan los capos para que
       # no se puede agregar un duplicado
-      print ([(s['serial'],s) for s in query_serial]) # imprime columna serial
-      print("serial existe")
+      # print ([(s['serial'],s) for s in query_serial]) # imprime columna serial
+      # print("serial existe")
       self.label_message.visible = True
       self.label_message.background = "yellow"
       self.label_message.text = "This Machine is already in the Data Base"
@@ -185,7 +185,6 @@ class register_machine(register_machineTemplate):
       self.drop_down_customer.visible = False
       self.button_register_customer.visible = False
       self.button_register_machine.visible = False
-      print("serial existe 2")
 
 
   def link_new_store_click(self, **event_args):
