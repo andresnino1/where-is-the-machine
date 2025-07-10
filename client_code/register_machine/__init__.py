@@ -6,9 +6,7 @@ from anvil.tables import app_tables
 import anvil.server
 
 #TODO
-# - implementar que se debe seleccionar un tipo de machine
-# si se deja en blanco debe indicarse con un mensaje
-# arreglar la busqueda de STORE y autocompletar el dropdown menu
+# asegurar que se seleccione un tipo de machine (deshabilitando los campos de registro de machine)
 
 class register_machine(register_machineTemplate):
   def __init__(self, **properties):
@@ -31,8 +29,8 @@ class register_machine(register_machineTemplate):
     if len(serial_search) > 2:
       self.search_machine_serial(serial_search) # function that search machine serial
 
+    # If the SERIAL is < 2 digits all the fields are disabled
     else:
-      # si el serial es menor que 2 digitos mantiene todos los campos ocultos
         self.label_type.visible = False
         self.dropdown_machine_type.visible = False
         self.label_store.visible = False
@@ -50,7 +48,6 @@ class register_machine(register_machineTemplate):
     self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
     self.dropdown_machine_type.include_placeholder=True
     self.dropdown_machine_type.placeholder="Select a Machine Model"
-    # self.dropdown_machine_type.selected_value=""
 
   
   # ================ DropDown Mahine Type Change Function ==============
@@ -61,8 +58,8 @@ class register_machine(register_machineTemplate):
     if machine_type is None:
       print("select machine type")
       # TODO: Evaluate when the user don't select a machine type
-    # return(machine_type)
-    print(machine_type)
+    # print(machine_type["model"])
+    return(machine_type["model"])
     
 
 
@@ -72,6 +69,7 @@ class register_machine(register_machineTemplate):
   def input_store_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
     store_name = self.input_store.text.strip()
+    self.button_register_machine.visible=False
   
     if len(store_name) > 1:
       self.search_store(store_name) # function search the store name in database
@@ -82,12 +80,12 @@ class register_machine(register_machineTemplate):
   def dropdown_store_change(self, **event_args):
     #   """This method is called when an item is selected"""
     store_name = self.dropdown_store.selected_value
-    # if store_name is None:
-    #   print("select machine type")
-    #   # TODO: Evaluate when the user don't select a machine type
-    print(store_name[store])     
-
-
+    self.button_register_machine.visible=False
+    if store_name:
+      # if there is a store in the database the register machine button is enabled
+      self.button_register_machine.visible=True
+      print(store_name["store"])     
+      
 
   
 # =============== Button Register Machine Click Function ==============
@@ -105,10 +103,6 @@ class register_machine(register_machineTemplate):
       # anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
 
 
-  def home_link_click(self, **event_args):
-  #   """This method is called when the link is clicked"""
-  #   open_form('register_machine')
-    pass
 
 
 # ===================================== SEARCH SERIAL FUNCTION ============================================
@@ -127,23 +121,21 @@ class register_machine(register_machineTemplate):
 
     # si el serial es mayor de 2 digitos inicia busqueda de serial
     # con la siguiente condicion
-
+      
+    # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
     if [(s['serial'],s) for s in query_serial] == []:
-      # serial no existe entonces se habilitan los campos para registar
-      # la nueva maquina
-      print("SERIAL NO EXISTE")
+      # print("SERIAL NO EXISTE")
       self.label_type.visible = True
       self.dropdown_machine_type.visible = True
       self.label_store.visible = True
       self.input_store.visible = True
       self.dropdown_store.visible = True
       self.button_register_store.visible = False
-      self.button_register_machine.visible = True
+      self.button_register_machine.visible = False
       self.label_message.visible = False
 
+      # IF serial exists, the fields are DISABLED, so the user can not register a duplicated
     else:
-      # serial existe, se deshabilitan los capos para que
-      # no se puede agregar un duplicado
       self.label_message.visible = True
       self.label_message.background = "yellow"
       self.label_message.text = "This Machine is already in the Data Base"
@@ -155,19 +147,25 @@ class register_machine(register_machineTemplate):
       self.button_register_store.visible = False
       self.button_register_machine.visible = False
 
-# =================== Search Store Function ======================
+# ========================================= Search Store Function ===========================
   
   def search_store(self, store_name, **event_args):
     query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
     self.dropdown_store.items = [(r['store'],r) for r in query_store]
     self.dropdown_store.visible = True
-    self.button_register_machine.visible = True
+    self.button_register_machine.visible = False
     self.button_register_store.visible = False
 
+    # If there is NOT an store in de database the REGISTER STORE BUTTON IS ENABLED
     if [(r['store'],r) for r in query_store] == []:
       self.dropdown_store.visible = False
-      self.button_register_machine.visible = True
+      self.button_register_machine.visible = False
       self.button_register_store.visible = True
+
+    # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
+    # To ensure the unique value in the list is selected.
+    if len([(r['store'],r) for r in query_store]) ==1:
+      self.dropdown_store_change()
 
 
     
@@ -177,6 +175,10 @@ class register_machine(register_machineTemplate):
     open_form('register_store')
 
 
+  def home_link_click(self, **event_args):
+    #   """This method is called when the link is clicked"""
+    #   open_form('register_machine')
+    pass
 
 
 
