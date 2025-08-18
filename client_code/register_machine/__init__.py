@@ -57,9 +57,15 @@ class register_machine(register_machineTemplate):
     machine_type = self.dropdown_machine_type.selected_value
     if machine_type is None:
       print("select machine type")
-      # TODO: Evaluate when the user don't select a machine type
-    # print(machine_type["model"])
-    return(machine_type["model"])
+      self.label_store.visible=False
+      self.input_store.visible=False
+      self.dropdown_store.visible=False
+          
+    else:
+      self.label_store.visible=True
+      self.input_store.visible=True
+      self.dropdown_store.visible=True
+      return(print(machine_type["model"]))
     
 
 
@@ -127,9 +133,9 @@ class register_machine(register_machineTemplate):
       # print("SERIAL NO EXISTE")
       self.label_type.visible = True
       self.dropdown_machine_type.visible = True
-      self.label_store.visible = True
-      self.input_store.visible = True
-      self.dropdown_store.visible = True
+      self.label_store.visible = False
+      self.input_store.visible = False
+      self.dropdown_store.visible = False
       self.button_register_store.visible = False
       self.button_register_machine.visible = False
       self.label_message.visible = False
