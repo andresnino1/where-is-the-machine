@@ -164,18 +164,37 @@ class register_machine(register_machineTemplate):
     machine_type=self.dropdown_machine_type.selected_value
     store_name = self.dropdown_store.selected_value # return the row from stores table
 
-    anvil.server.call('register_machine', serial, machine_type, store_name)
-    
-    
-  def link_new_store_click(self, **event_args):
+    new_machine = anvil.server.call('register_machine', serial, machine_type["model"], store_name["store"])
+    if new_machine == 'ok':
+      self.label_serial.visible=False
+      self.input_serial.visible=False
+      self.label_type.visible=False
+      self.dropdown_machine_type.visible=False
+      self.label_store.visible=False
+      self.input_store.visible=False
+      self.dropdown_store.visible=False
+      self.button_register_store.visible=False
+      self.button_register_machine.visible=False
+      self.label_message.visible = True
+      self.label_message.background = "green"
+      self.label_message.text = "Machine Successfuly Registered !!"
+    else:
+      self.label_serial.visible=False
+      self.input_serial.visible=False
+      self.label_message.visible = True
+      self.label_message.background = "red"
+      self.label_message.text = "Machine Not Registered - Try Again!!"
+      
+        
+  def new_store_link_click(self, **event_args):
     """This method is called when the link is clicked"""
     open_form('register_store')
 
 
   def home_link_click(self, **event_args):
     #   """This method is called when the link is clicked"""
-    #   open_form('register_machine')
-    pass
+    open_form('register_machine')
+
 
   def button_register_store_click(self, **event_args):
     """This method is called when the button is clicked"""

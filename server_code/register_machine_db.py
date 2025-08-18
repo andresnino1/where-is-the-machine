@@ -3,18 +3,6 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-# This is a server module. It runs on the Anvil server,
-# rather than in the user's browser.
-#
-# To allow anvil.server.call() to call functions here, we mark
-# them with @anvil.server.callable.
-# Here is an example - you can replace it with your own:
-
-# TO DO:
-# Terminar de implementar el registro de una nueva maquina en la base de datos
-# en este momento se hace el registro del serial pero no ingresa ningun valor en otros campos
-# acordarse que hay campos que relacionan tablas y se debe pasar toda la fila de la tabla a ingresar
-
 
 # ==================== REGISTER A MACHINE IN DB ==========================
 @anvil.server.callable
@@ -27,10 +15,12 @@ def register_machine(serial, machine_type, store_name):
     store= app_tables.stores.get(store=str(store_name)) # este es un link a tabla STORES (debe ser string)
     print(type)
     print(store)
-    #app_tables.machines.add_row(serial=serial, type_link=type, store_link=store)
+    app_tables.machines.add_row(serial=serial, type_link=type, store_link=store)
     print('registro exitoso')
+    return('ok')
   else:
     print('machine was not registered')
+    return('fail')
 
 # ================ FUNCTION THAT CHECK IF THE MACHINE IS ALREADY IN THE DB =============
 def is_serial_in_db(serial):
