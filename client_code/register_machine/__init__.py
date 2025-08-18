@@ -93,24 +93,6 @@ class register_machine(register_machineTemplate):
       print(store_name["store"])     
       
 
-  
-# =============== Button Register Machine Click Function ==============
-      
-  def button_register_machine_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    find_serial = app_tables.machines.get(serial=self.input_serial.text)
-    if find_serial is not None:
-      # Machine exists in database
-
-      print ('serial si existe')
-    else:
-      # Machine is not in database -- need to be registered
-      print ('machine is not in database.. call server here')
-      # anvil.server.call('register_machine', self.input_serial.text, self.dropdown_machine_type.selected_value)
-
-
-
-
 # ===================================== SEARCH SERIAL FUNCTION ============================================
     
   def search_machine_serial(self, serial_search, **event_args):
@@ -174,6 +156,15 @@ class register_machine(register_machineTemplate):
       self.dropdown_store_change()
 
 
+  # =============== Button Register Machine Click Function ==============
+
+  def button_register_machine_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    serial=self.input_serial.text.strip()
+    machine_type=self.dropdown_machine_type.selected_value
+    store_name = self.dropdown_store.selected_value # return the row from stores table
+
+    anvil.server.call('register_machine', serial, machine_type, store_name)
     
     
   def link_new_store_click(self, **event_args):

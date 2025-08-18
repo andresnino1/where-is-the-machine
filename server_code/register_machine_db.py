@@ -9,14 +9,28 @@ import anvil.server
 # To allow anvil.server.call() to call functions here, we mark
 # them with @anvil.server.callable.
 # Here is an example - you can replace it with your own:
-#
+
+# TO DO:
+# Terminar de implementar el registro de una nueva maquina en la base de datos
+# en este momento se hace el registro del serial pero no ingresa ningun valor en otros campos
+# acordarse que hay campos que relacionan tablas y se debe pasar toda la fila de la tabla a ingresar
+
+
 # ==================== REGISTER A MACHINE IN DB ==========================
 @anvil.server.callable
-def register_machine(serial, type, store):
-  
-  app_tables.machines.add_row(serial=serial, type_link=type, store_link=store)
-  print('registro exitoso')
-  return('ok')
+def register_machine(serial, machine_type, store_name):
+  if not(is_serial_in_db(serial)):
+    # los campos type_link y store_link son campos relacionados entre tablas
+    # y se debe obtener TODA LA FILA con GET buscando el modelo y nombre de la tienda
+    # luego se agrega la nueva fila ADD_ROW pasando los parametros de las tablas que estan relacionadas 
+    type = app_tables.machine_type.get(model=str(machine_type)) # este es un link a tabla MACHINE TYPE (debe ser string)
+    store= app_tables.stores.get(store=str(store_name)) # este es un link a tabla STORES (debe ser string)
+    print(type)
+    print(store)
+    #app_tables.machines.add_row(serial=serial, type_link=type, store_link=store)
+    print('registro exitoso')
+  else:
+    print('machine was not registered')
 
 # ================ FUNCTION THAT CHECK IF THE MACHINE IS ALREADY IN THE DB =============
 def is_serial_in_db(serial):
@@ -27,7 +41,20 @@ def is_serial_in_db(serial):
   else:
     print('machine is already in DB')
     return(True)
-    
+
+# # =============== FUNCTION THAT CHECK IF THE STORE IS ALREADY IN THE DB ==============
+# def is_store_in_db(store):
+#   query_store = app_tables.stores.search(store=store)
+#   if [(r['store'],r) for r in query_store] == []:
+#     print("store is not in DB")
+#     return(False)
+#   else:
+#     print('store is already in DB')
+#     return(True)
+
+
+  
+  
     
   #query_serial = app_tables.machines.search(serial=serial_search)
   
