@@ -186,6 +186,10 @@ class register_machine(register_machineTemplate):
     #   open_form('register_machine')
     pass
 
+  def button_register_store_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('register_store')
+
 
 
 

@@ -10,14 +10,34 @@ import anvil.server
 # them with @anvil.server.callable.
 # Here is an example - you can replace it with your own:
 #
+# ==================== REGISTER A MACHINE IN DB ==========================
 @anvil.server.callable
-def register_machine(serial, type):
-  app_tables.machines.add_row(serial=serial, type_1=type)
+def register_machine(serial, type, store):
+  
+  app_tables.machines.add_row(serial=serial, type_link=type, store_link=store)
   print('registro exitoso')
+  return('ok')
+
+# ================ FUNCTION THAT CHECK IF THE MACHINE IS ALREADY IN THE DB =============
+def is_serial_in_db(serial):
+  query_serial = app_tables.machines.search(serial=serial)
+  if [(s['serial'],s) for s in query_serial] == []:
+    print('machine is not in the DB')
+    return(False)
+  else:
+    print('machine is already in DB')
+    return(True)
+    
+    
+  #query_serial = app_tables.machines.search(serial=serial_search)
+  
+
 
 # this function converts the string data column to a link row data
 # esta funcion convierte la columna con valores de texto y crea una columna nueva
 # con valores con link a una tabla
+
+
 
 @anvil.server.callable
 def migratedata():
