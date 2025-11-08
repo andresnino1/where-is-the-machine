@@ -6,7 +6,7 @@ from anvil.tables import app_tables
 import anvil.server
 
 #TODO
-# asegurar que se seleccione un tipo de machine (deshabilitando los campos de registro de machine)
+# 
 
 class register_machine(register_machineTemplate):
   def __init__(self, **properties):
@@ -65,6 +65,8 @@ class register_machine(register_machineTemplate):
       self.label_store.visible=False
       self.input_store.visible=False
       self.dropdown_store.visible=False
+      self.button_register_store.visible=False
+      self.button_register_machine.visible=False
           
     else:
       self.label_store.visible=True
@@ -191,7 +193,8 @@ class register_machine(register_machineTemplate):
 
   def button_register_store_click(self, **event_args):
     """This method is called when the button is clicked"""
-    open_form('register_store')
+    new_store_name = self.input_store.text
+    open_form('register_store', new_store_name)
 
 
 
