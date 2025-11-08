@@ -22,29 +22,34 @@ class register_machine(register_machineTemplate):
     self.label_message.visible = False
   
 # ======================  Input Serial Change Function ==============================
-  def input_serial_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    serial_search = self.input_serial.text.strip()
-    
-    if len(serial_search) > 2:
-      self.search_machine_serial(serial_search) # function that search machine serial
 
-    # If the SERIAL is < 2 digits all the fields are disabled
-    else:
-        self.label_type.visible = False
-        self.dropdown_machine_type.visible = False
-        self.label_store.visible = False
-        self.input_store.visible = False
-        self.dropdown_store.visible = False
-        self.button_register_store.visible = False
-        self.button_register_machine.visible = False
-        self.label_message.visible = False
+  def input_serial_change(self, **event_args):
+    self.label_type.visible = False
+    self.dropdown_machine_type.visible = False
+    self.label_store.visible = False
+    self.input_store.visible = False
+    self.dropdown_store.visible = False
+    self.button_register_store.visible = False
+    self.button_register_machine.visible = False
+    self.label_message.visible = False
+
+# ======================  Input Serial Pressed Enter ==============================
+  
+  def input_serial_pressed_enter(self, **event_args):
+    serial_search = self.input_serial.text.strip()
+    if serial_search != "":
+      self.search_machine_serial(serial_search) # function that search machine serial
+    
+# ======================  Input Serial Lost Focus ============================== 
+  def input_serial_lost_focus(self, **event_args):
+    serial_search = self.input_serial.text.strip()
+    if serial_search != "":
+      self.search_machine_serial(serial_search) # function that search machine serial
 
 
 # ================ DropDown Machine Type Show Function ==================
 
   def dropdown_machine_type_show(self, **event_args):
-    """This method is called when the DropDown is shown on the screen"""
     self.dropdown_machine_type.items = [(r["model"],r) for r in app_tables.machine_type.search()]
     self.dropdown_machine_type.include_placeholder=True
     self.dropdown_machine_type.placeholder="Select a Machine Model"
@@ -98,21 +103,9 @@ class register_machine(register_machineTemplate):
   def search_machine_serial(self, serial_search, **event_args):
     
     query_serial = app_tables.machines.search(serial=serial_search) # search the serial in database
-    self.label_type.visible = False
-    self.dropdown_machine_type.visible = False
-    self.label_store.visible = False
-    self.input_store.visible = False
-    self.dropdown_store.visible = False
-    self.button_register_store.visible = False
-    self.button_register_machine.visible = False
-    self.label_message.visible = False
-
-    # si el serial es mayor de 2 digitos inicia busqueda de serial
-    # con la siguiente condicion
       
     # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
     if [(s['serial'],s) for s in query_serial] == []:
-      # print("SERIAL NO EXISTE")
       self.label_type.visible = True
       self.dropdown_machine_type.visible = True
       self.label_store.visible = False
@@ -200,6 +193,10 @@ class register_machine(register_machineTemplate):
     """This method is called when the button is clicked"""
     open_form('register_store')
 
+
+
+ 
+ 
 
 
 
