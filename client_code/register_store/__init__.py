@@ -23,7 +23,7 @@ class register_store(register_storeTemplate):
     self.button_register_store.visible = False
 
     # Any code you write here will run before the form opens.
-  def input_store_change(self, **event_args):
+  def input_store_name_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
     search_store = self.input_store.text.strip()
     self.input_store_code.text = ""

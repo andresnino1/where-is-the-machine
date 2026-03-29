@@ -32,6 +32,12 @@ def is_serial_in_db(serial):
     print('machine is already in DB')
     return(True)
 
+
+# ================ FUNCTION THAT SHOW MACHINE INFORMATION API ===========================
+
+
+
+
 # # =============== FUNCTION THAT CHECK IF THE STORE IS ALREADY IN THE DB ==============
 # def is_store_in_db(store):
 #   query_store = app_tables.stores.search(store=store)
