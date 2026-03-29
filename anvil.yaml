@@ -128,11 +128,25 @@ db_schema:
     - admin_ui: {width: 200}
       name: opsm_store_code
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 4.5, width: 200}
+      client_hidden: false
       name: state
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {order: 7, width: 200}
+      client_hidden: false
       name: transfers
+      type: string
+    - admin_ui: {order: 4, width: 200}
+      client_hidden: false
+      name: store_address
+      type: string
+    - admin_ui: {order: 5, width: 200}
+      client_hidden: false
+      name: store_phone
+      type: string
+    - admin_ui: {order: 6, width: 200}
+      client_hidden: false
+      name: store_email
       type: string
     server: full
     title: stores
