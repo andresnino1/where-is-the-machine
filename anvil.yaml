@@ -70,6 +70,10 @@ db_schema:
     - admin_ui: {width: 200}
       name: current_status
       type: string
+    - admin_ui: {order: -0.75, width: 200}
+      client_hidden: false
+      name: udi
+      type: string
     server: full
     title: machines
   parts:
