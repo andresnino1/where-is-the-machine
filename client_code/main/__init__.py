@@ -14,7 +14,7 @@ class main(mainTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.label_password_e
+    self.label_password_error.visible = False
       
 
     # Any code you write here will run before the form opens.
@@ -27,6 +27,13 @@ class main(mainTemplate):
     if is_password_ok:
       anvil.open_form('register_machine')
     else:
+      self.label_password_error.visible = True
+      self.label_password_error.text = "Incorrect Password"
+
+  @handle("input_login_password", "change")
+  def input_login_password_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
+    self.label_password_error.visible=False
       
     
 

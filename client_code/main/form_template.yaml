@@ -10,9 +10,10 @@ components:
     properties: {font_size: 20, text: Enter Login Password}
     type: Label
   - data_bindings: []
+    event_bindings: {}
     layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ'}
     name: input_login_password
-    properties: {background: 'theme:Light Overlay 1'}
+    properties: {background: 'theme:Light Overlay 1', hide_text: true}
     type: TextBox
   - layout_properties: {grid_position: 'CJVOBF,LCSGEN'}
     name: label_password_error
