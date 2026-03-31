@@ -34,12 +34,16 @@ def is_serial_in_db(serial):
 
 
 # ================ FUNCTION THAT SHOW MACHINE INFORMATION API ===========================
+# Esta funcion usa la clase anvil.server.AppResponder que envia el diccionario "data" con la 
+# informacion para ser mostrada en el formulaio "machine_information"
+# la API con la ruta <url app>/machine/xxxx sera la ruta a la que se dirigira 
 
 @anvil.server.route("/machine/:serial")
 def get_machine(serial):
   query_serial = app_tables.machines.get(serial=serial)
   if query_serial is not None:
-    return anvil.server.FormResponse("machine_information", info_serial=query_serial['serial'], info_type=query_serial['type'], info_current_location=query_serial['store']  )
+    responter_data = anvil.server.AppResponder(data={"info_serial":query_serial["serial"], "info_type":query_serial["type"], "info_current_location":query_serial["store"]})
+    return responter_data.load_form('machine_information')
   else:
     return anvil.server.HttpResponse(404, "No Serial Number")
     

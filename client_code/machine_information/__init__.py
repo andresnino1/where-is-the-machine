@@ -13,7 +13,10 @@ class machine_information(machine_informationTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    print('hello client')
+    info_api=anvil.server.startup_data
+    self.info_serial.text=info_api["info_serial"]
+    self.info_type.text=info_api["info_type"]
+    self.info_current_location.text=info_api["info_current_location"]
 
 
     
