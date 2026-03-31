@@ -1,7 +1,10 @@
+import anvil.secrets
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+import anvil.secrets
+
 
 
 # ==================== REGISTER A MACHINE IN DB ==========================
@@ -47,6 +50,23 @@ def get_machine(serial):
   else:
     return anvil.server.HttpResponse(404, "No Serial Number")
     
+
+
+# ================== FUNCTION TO LOGIN ============================
+# This function is a momentary login until the user login is implemented
+
+@anvil.server.callable
+def check_password(password):
+  momentary_password = anvil.secrets.get_secret('momentary_password')
+  if momentary_password == password:
+    return True
+  else:
+    return False
+  
+  
+  
+
+
 
 # # =============== FUNCTION THAT CHECK IF THE STORE IS ALREADY IN THE DB ==============
 # def is_store_in_db(store):

@@ -222,10 +222,17 @@ runtime_options:
   server_spec: {base: python310-minimal}
   server_version: python3-sandbox
   version: 2
+secrets:
+  momentary_password:
+    type: secret
+    value: {CFYHDT6KOQVHGU3L: wdZJjcFwTdTIGJ4JLIwIaRZh5aihkH6oQtq6Xl99Z6/jAfqefYCuXSyobIMoEZlPMBQZPnQlo5PGMnCt60HCCWBo2ZTI2BRz7OyecYpvkoYIFuKdeZWT1E5m3qvQz5CimCe0wStA}
 services:
 - client_config: {enable_v2: false}
   server_config: {auto_create_missing_columns: true}
   source: /runtime/services/tables.yml
+- client_config: {}
+  server_config: {}
+  source: /runtime/services/anvil/secrets.yml
 startup: {module: register_machine, type: form}
 startup_form: null
 uplink_visible: true
