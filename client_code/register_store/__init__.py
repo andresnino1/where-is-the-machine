@@ -15,6 +15,8 @@ import anvil.server
 # link del menu NEW STORE no se ha hecho una busqueda del store con anterioridad
 # si el store no existe.. registrar el nuevo store en la base de datos STORES
 
+# display the name of the stores found in the db in data_grid
+
 class register_store(register_storeTemplate):
   def __init__(self, new_store_name=None, **properties):
     # Set Form properties and Data Bindings.
@@ -49,5 +51,25 @@ class register_store(register_storeTemplate):
     self.dropdown_state.include_placeholder=True
     self.dropdown_state.placeholder="Select State"
     
+# ========================================= Search Store Function ===========================
+  
+  def search_store(self, store_name, **event_args):
+    query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
+    self.dropdown_store.items = [(r['store'],r) for r in query_store]
+    self.dropdown_store.visible = True
+    self.button_register_machine.visible = False
+    self.button_register_store.visible = False
+
+    # If there is NOT an store in de database the REGISTER STORE BUTTON IS ENABLED
+    if [(r['store'],r) for r in query_store] == []:
+      self.dropdown_store.visible = False
+      self.button_register_machine.visible = False
+      self.button_register_store.visible = True
+
+    # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
+    # To ensure the unique value in the list is selected.
+    if len([(r['store'],r) for r in query_store]) ==1:
+      self.dropdown_store_change()
+
 
 

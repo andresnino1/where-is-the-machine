@@ -17,6 +17,17 @@ components:
     name: input_store_name
     properties: {background: 'theme:Light Overlay 1', placeholder: Enter Store / Customer Name}
     type: TextBox
+  - components:
+    - layout_properties: {}
+      name: repeating_panel_stores
+      properties: {item_template: register_store.row_store_name, visible: true}
+      type: RepeatingPanel
+    layout_properties: {grid_position: 'KPNYPC,UCSRAF'}
+    name: data_grid_stores
+    properties:
+      columns:
+      - {data_key: '', expand: false, id: JKSDUP, title: Stores Found}
+    type: DataGrid
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL LGSOTC,WERRUM'}
     name: label_4
     properties: {font_size: 20, text: Address, underline: false}
