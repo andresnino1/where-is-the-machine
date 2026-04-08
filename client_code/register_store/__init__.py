@@ -16,18 +16,19 @@ import anvil.server
 # si el store no existe.. registrar el nuevo store en la base de datos STORES
 
 class register_store(register_storeTemplate):
-  def __init__(self, new_sotre_name=None, **properties):
+  def __init__(self, new_store_name=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.input_store.text = new_sotre_name
+    self.input_store_name.text = new_store_name
     self.button_register_store.visible = False
 
     # Any code you write here will run before the form opens.
   def input_store_name_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
-    search_store = self.input_store.text.strip()
-    self.input_store_code.text = ""
-    self.dropdown_state.selected_value = None
+    store_name = self.input_store_name.text.strip()
+    if len(store_name) > 1:
+      self.search_store(store_name) # function search the store name in database
+
 
 
   def button_register_store_click(self, **event_args):

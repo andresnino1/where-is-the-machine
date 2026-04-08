@@ -74,6 +74,10 @@ db_schema:
       client_hidden: false
       name: udi
       type: string
+    - admin_ui: {order: 12, width: 200}
+      client_hidden: false
+      name: installation_day
+      type: date
     server: full
     title: machines
   parts:
@@ -146,9 +150,6 @@ db_schema:
     columns:
     - admin_ui: {width: 331}
       name: store
-      type: string
-    - admin_ui: {width: 200}
-      name: opsm_store_code
       type: string
     - admin_ui: {order: 4.5, width: 200}
       client_hidden: false

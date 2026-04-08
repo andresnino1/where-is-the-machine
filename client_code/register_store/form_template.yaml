@@ -17,10 +17,6 @@ components:
     name: input_store_name
     properties: {background: 'theme:Light Overlay 1', placeholder: Enter Store / Customer Name}
     type: TextBox
-  - layout_properties: {grid_position: 'QVPXQU,JSGKFL DVPNGU,TONHHQ'}
-    name: label_customer
-    properties: {font_size: 20, text: Store Code}
-    type: Label
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL LGSOTC,WERRUM'}
     name: label_4
     properties: {font_size: 20, text: Address, underline: false}
@@ -28,6 +24,10 @@ components:
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL CAQNGD,VIIWQS'}
     name: label_3
     properties: {font_size: 20, text: State, underline: false}
+    type: Label
+  - layout_properties: {grid_position: 'QVPXQU,JSGKFL TRETRR,ONWXKQ'}
+    name: label_7
+    properties: {font_size: 20, text: Contact Person, underline: false}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL PPUXPS,DEHHHZ'}
     name: label_5
@@ -37,14 +37,6 @@ components:
     name: label_6
     properties: {font_size: 20, text: Email, underline: false}
     type: Label
-  - layout_properties: {grid_position: 'QVPXQU,JSGKFL GMVGBB,CHKYEE'}
-    name: label_7
-    properties: {font_size: 20, text: Contact Person, underline: false}
-    type: Label
-  - layout_properties: {grid_position: 'QVPXQU,TAQXJI NZQXTB,OXLDJY'}
-    name: input_store_code
-    properties: {}
-    type: TextBox
   - layout_properties: {grid_position: 'QVPXQU,TAQXJI GJZCGW,GPWEQR'}
     name: input_store_address
     properties: {}
@@ -54,16 +46,16 @@ components:
     name: dropdown_state
     properties: {}
     type: DropDown
+  - layout_properties: {grid_position: 'QVPXQU,TAQXJI OCZSWZ,OLSRIM'}
+    name: input_store_contact_person
+    properties: {}
+    type: TextBox
   - layout_properties: {grid_position: 'QVPXQU,TAQXJI MZVDCD,ZYVTNQ'}
     name: input_store_phone
     properties: {}
     type: TextBox
   - layout_properties: {grid_position: 'QVPXQU,TAQXJI QQTAZW,XKQOBT'}
     name: input_store_email
-    properties: {}
-    type: TextBox
-  - layout_properties: {grid_position: 'QVPXQU,TAQXJI MFIOME,ABIMUE'}
-    name: input_store_contact_person
     properties: {}
     type: TextBox
   - data_bindings: []
