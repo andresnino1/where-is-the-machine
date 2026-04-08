@@ -23,6 +23,7 @@ class register_store(register_storeTemplate):
     self.init_components(**properties)
     self.input_store_name.text = new_store_name
     self.button_register_store.visible = False
+    self.store_name_repeating_panel.items=['test1', 'test2', 'test3', 'test4', 'test5', 'test6']
 
     # Any code you write here will run before the form opens.
   def input_store_name_change(self, **event_args):

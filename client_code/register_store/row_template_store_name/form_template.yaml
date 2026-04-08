@@ -1,6 +1,6 @@
 components:
 - layout_properties: {column: JKSDUP}
-  name: store_name
+  name: store_name_in_panel
   properties: {}
   type: Label
 container: {type: DataRowPanel}
