@@ -57,21 +57,12 @@ class register_store(register_storeTemplate):
   
   def search_store(self, store_name, **event_args):
     query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
-    self.dropdown_store.items = [(r['store'],r) for r in query_store]
-    self.dropdown_store.visible = True
-    self.button_register_machine.visible = False
-    self.button_register_store.visible = False
+    self.store_name_repeating_panel.items = [(r['store'],r) for r in query_store]
 
     # If there is NOT an store in de database the REGISTER STORE BUTTON IS ENABLED
     if [(r['store'],r) for r in query_store] == []:
-      self.dropdown_store.visible = False
-      self.button_register_machine.visible = False
-      self.button_register_store.visible = True
+      self.store_name_repeating_panel.items=['Store Is Not In Data Base']
 
-    # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
-    # To ensure the unique value in the list is selected.
-    if len([(r['store'],r) for r in query_store]) ==1:
-      self.dropdown_store_change()
 
 
 
