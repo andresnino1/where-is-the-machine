@@ -27,11 +27,18 @@ class register_store(register_storeTemplate):
     self.store_name_repeating_panel.items=[]
 
     # Any code you write here will run before the form opens.
-  def input_store_name_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
+    
+  # def input_store_name_change(self, **event_args):
+  #   """This method is called when the text in this text box is edited"""
+  #   store_name = self.input_store_name.text.strip()
+  #   if len(store_name) > 1:
+  #     self.search_store(store_name) # function search the store name in database
+
+
+  @handle("input_store_name", "pressed_enter")
+  def input_store_name_pressed_enter(self, **event_args):
     store_name = self.input_store_name.text.strip()
-    if len(store_name) > 1:
-      self.search_store(store_name) # function search the store name in database
+    self.search_store(store_name)  # function search the store name
 
 
 
@@ -57,11 +64,17 @@ class register_store(register_storeTemplate):
   
   def search_store(self, store_name, **event_args):
     query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
+    print(query_store)
+    # found = [(r['store'],r) for r in query_store]
+    # print(found)
     self.store_name_repeating_panel.items = [(r['store'],r) for r in query_store]
 
     # If there is NOT an store in de database the REGISTER STORE BUTTON IS ENABLED
     if [(r['store'],r) for r in query_store] == []:
       self.store_name_repeating_panel.items=['Store Is Not In Data Base']
+
+
+
 
 
 

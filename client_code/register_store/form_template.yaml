@@ -12,7 +12,7 @@ components:
     properties: {font_size: 20, text: Store / Customer Name}
     type: Label
   - data_bindings: []
-    event_bindings: {change: input_store_name_change}
+    event_bindings: {}
     layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ'}
     name: input_store_name
     properties: {background: 'theme:Light Overlay 1', placeholder: Enter Store / Customer Name}
