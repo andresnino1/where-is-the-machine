@@ -25,6 +25,11 @@ def register_machine(serial, machine_type, store_name):
     print('machine was not registered')
     return('fail')
 
+# ============================= REGISTER STORE IN DB ========================
+@anvil.server.callable
+de
+
+    
 # ================ FUNCTION THAT CHECK IF THE MACHINE IS ALREADY IN THE DB =============
 def is_serial_in_db(serial):
   query_serial = app_tables.machines.search(serial=serial)

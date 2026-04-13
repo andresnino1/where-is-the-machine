@@ -28,31 +28,14 @@ class register_store(register_storeTemplate):
 
     # Any code you write here will run before the form opens.
     
-  # def input_store_name_change(self, **event_args):
-  #   """This method is called when the text in this text box is edited"""
-  #   store_name = self.input_store_name.text.strip()
-  #   if len(store_name) > 1:
-  #     self.search_store(store_name) # function search the store name in database
-
-
-  @handle("input_store_name", "pressed_enter")
-  def input_store_name_pressed_enter(self, **event_args):
+  @handle("input_store_name", "change")
+  def input_store_name_change(self, **event_args):
+    """This method is called when the text in this text box is edited"""
     store_name = self.input_store_name.text.strip()
-    self.search_store(store_name)  # function search the store name
+    self.data_grid_store_name.visible=False
+    if len(store_name) > 1:
+      self.search_store(store_name) # function search the store name in database
 
-
-
-  def button_register_store_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
- 
-  def link_home_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    open_form('register_machine')
-
-  def link_new_store_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    open_form('register_store')
 
   def dropdown_state_show(self, **event_args):
     states = ["ACT", "NSW", "VIC", "QLD", "SA", "TAZ", "WA", "NT"]
@@ -65,13 +48,23 @@ class register_store(register_storeTemplate):
   def search_store(self, store_name, **event_args):
     query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
     store_list = [r['store'] for r in query_store]
-    print(store_list)
-    # self.store_name_repeating_panel.items = [(r['store'],r) for r in query_store]
+    self.store_name_repeating_panel.items = store_list
+    self.data_grid_store_name.visible=True
 
     # If there is NOT an store in de database the REGISTER STORE BUTTON IS ENABLED
-    if [(r['store'],r) for r in query_store] == []:
+    if store_list == []:
       self.store_name_repeating_panel.items=['Store Is Not In Data Base']
+      self.data_grid_store_name.visible=True
+      self.button_register_store.visible=True
+      
 
+  def button_register_store_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.server.call('hello')
+
+  def link_home_click(self, **event_args):
+    """This method is called when the link is clicked"""
+    open_form('register_machine')
 
 
 

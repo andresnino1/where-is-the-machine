@@ -29,23 +29,23 @@ components:
       rows_per_page: 3
     type: DataGrid
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL LGSOTC,WERRUM'}
-    name: label_4
+    name: address_label
     properties: {font_size: 20, text: Address, underline: false}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL CAQNGD,VIIWQS'}
-    name: label_3
+    name: state_label
     properties: {font_size: 20, text: State, underline: false}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL TRETRR,ONWXKQ'}
-    name: label_7
+    name: contact_person_label
     properties: {font_size: 20, text: Contact Person, underline: false}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL PPUXPS,DEHHHZ'}
-    name: label_5
+    name: phone_label
     properties: {font_size: 20, text: Phone, underline: false}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,JSGKFL MLALYP,JZPPVR'}
-    name: label_6
+    name: email_label
     properties: {font_size: 20, text: Email, underline: false}
     type: Label
   - layout_properties: {grid_position: 'QVPXQU,TAQXJI GJZCGW,GPWEQR'}
@@ -79,12 +79,7 @@ components:
   name: content_panel
   properties: {background: '#ffffff', col_widths: '{"CAFYVY":20,"VVBLTZ":40,"JSGKFL":20,"TAQXJI":40}'}
   type: ColumnPanel
-- components:
-  - event_bindings: {click: link_new_store_click}
-    layout_properties: {}
-    name: link_new_store
-    properties: {foreground: 'theme:On Primary', text: New Store}
-    type: Link
+- components: []
   layout_properties: {slot: nav-right}
   name: flow_panel_2
   properties: {}
