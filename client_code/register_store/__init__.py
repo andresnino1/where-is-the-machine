@@ -31,12 +31,22 @@ class register_store(register_storeTemplate):
     
   @handle("input_store_name", "change")
   def input_store_name_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    store_name = self.input_store_name.text.strip()
     self.data_grid_store_name.visible=False
-    if len(store_name) > 1:
-      self.search_store(store_name) # function search the store name in database
+    self.label_message.visible = False
+    self.button_register_store.visible = False
 
+  @handle("input_store_name", "lost_focus")
+  def input_store_name_lost_focus(self, **event_args):
+    store_name = " ".join(self.input_store_name.text.split())
+    if not store_name:
+      self.label_message.visible = True
+      self.label_message.text = "Store Name Is Required"
+      self.label_message.background = "red"
+      self.button_register_store.visible = False
+    else:
+      self.label_message.visible = False
+      self.button_register_store.visible = True
+      self.search_store(store_name)
 
   def dropdown_state_show(self, **event_args):
     states = ["ACT", "NSW", "VIC", "QLD", "SA", "TAZ", "WA", "NT"]
@@ -56,12 +66,11 @@ class register_store(register_storeTemplate):
     if store_list == []:
       self.store_name_repeating_panel.items=['Store Is Not In Data Base']
       self.data_grid_store_name.visible=True
-      self.button_register_store.visible=True
       
 
   def button_register_store_click(self, **event_args):
     """This method is called when the button is clicked"""
-    store_name = self.input_store_name.text
+    store_name = " ".join(self.input_store_name.text.split())
     store_address = self.input_store_address.text
     state = self.dropdown_state.selected_value
     store_contact_person = self.input_store_contact_person.text
@@ -73,6 +82,13 @@ class register_store(register_storeTemplate):
       self.label_message.visible = True
       self.label_message.background = "green"
       self.label_message.text = "Store Successfuly Registered !!"
+      self.input_store_name.text = ""
+      self.input_store_address.text = ""
+      self.dropdown_state.selected_value = None
+      self.input_store_contact_person.text = ""
+      self.input_store_phone.text = ""
+      self.input_store_email.text = ""
+      self.data_grid_store_name.visible = False
       
 
 
@@ -80,7 +96,6 @@ class register_store(register_storeTemplate):
   def link_home_click(self, **event_args):
     """This method is called when the link is clicked"""
     open_form('register_machine')
-
 
 
 

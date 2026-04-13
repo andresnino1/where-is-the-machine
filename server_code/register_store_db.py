@@ -14,7 +14,20 @@ import anvil.server
 
 @anvil.server.callable
 def register_store(store_name, store_address, state, store_phone, store_email,  store_contact_person):
-  app_tables.stores.add_row(store=store_name, store_address=store_address, state=state, store_phone=store_phone, store_email=store_email, contact_person=store_contact_person)
-  print('store register successfuly')
-  return('ok')
   
+  
+  app_tables.stores.add_row(store=store_name, store_address=store_address, state=state, store_phone=store_phone, store_email=store_email, contact_person=store_contact_person)
+  # print('store register successfuly')
+  return('ok')
+
+
+
+# ================ FUNCTION THAT CHECK IF THE STORE NAME IS ALREADY IN THE DB =============
+def is_store_in_db(store_name):
+  query_store = app_tables.stores.search(store=store_name)
+  if [(s['serial'],s) for s in query_store] == []:
+    print('machine is not in the DB')
+    return(False)
+  else:
+    print('machine is already in DB')
+    return(True)
