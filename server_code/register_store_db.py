@@ -13,18 +13,8 @@ import anvil.server
 #
 
 @anvil.server.callable
-def register_store(store_name, store_address, state, store_contact_person, store_phone, store_email):
-  if not(is_serial_in_db(serial)):
-    # los campos type_link y store_link son campos relacionados entre tablas
-    # y se debe obtener TODA LA FILA con GET buscando el modelo y nombre de la tienda
-    # luego se agrega la nueva fila ADD_ROW pasando los parametros de las tablas que estan relacionadas 
-    type = app_tables.machine_type.get(model=str(machine_type)) # este es un link a tabla MACHINE TYPE (debe ser string)
-    store= app_tables.stores.get(store=str(store_name)) # este es un link a tabla STORES (debe ser string)
-    print(type)
-    print(store)
-    app_tables.machines.add_row(serial=serial, type_link=type, store_link=store)
-    print('registro exitoso')
-    return('ok')
-  else:
-    print('machine was not registered')
-    return('fail')
+def register_store(store_name, store_address, state, store_phone, store_email,  store_contact_person):
+  app_tables.stores.add_row(store=store_name, store_address=store_address, state=state, store_phone=store_phone, store_email=store_email, contact_person=store_contact_person)
+  print('store register successfuly')
+  return('ok')
+  

@@ -60,7 +60,13 @@ class register_store(register_storeTemplate):
 
   def button_register_store_click(self, **event_args):
     """This method is called when the button is clicked"""
-    anvil.server.call('hello')
+    store_name = self.input_store_name
+    store_address = self.input_store_address
+    state = self.dropdown_state.selected_value
+    store_contact_person = self.input_store_contact_person
+    store_phone = self.input_store_phone
+    store_email = self.input_store_email
+    anvil.server.call('register_store', store_name, store_address, state, store_contact_person, store_phone, store_email )
 
   def link_home_click(self, **event_args):
     """This method is called when the link is clicked"""
