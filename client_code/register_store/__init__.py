@@ -23,7 +23,8 @@ class register_store(register_storeTemplate):
     self.init_components(**properties)
     self.input_store_name.text = new_store_name
     self.button_register_store.visible = False
-    self.data_grid_store_name.visible=False
+    self.data_grid_store_name.visible = False
+    self.label_message.visible = False
     self.store_name_repeating_panel.items=[]
 
     # Any code you write here will run before the form opens.
@@ -60,14 +61,22 @@ class register_store(register_storeTemplate):
 
   def button_register_store_click(self, **event_args):
     """This method is called when the button is clicked"""
-    store_name = self.input_store_name
-    store_address = self.input_store_address
+    store_name = self.input_store_name.text
+    store_address = self.input_store_address.text
     state = self.dropdown_state.selected_value
-    store_contact_person = self.input_store_contact_person
-    store_phone = self.input_store_phone
-    store_email = self.input_store_email
-    anvil.server.call('register_store', store_name, store_address, state, store_contact_person, store_phone, store_email )
+    store_contact_person = self.input_store_contact_person.text
+    store_phone = self.input_store_phone.text
+    store_email = self.input_store_email.text
+    new_store = anvil.server.call('register_store', store_name, store_address, state, store_phone, store_email, store_contact_person)
 
+    if new_store == "ok":
+      self.label_message.visible = True
+      self.label_message.background = "green"
+      self.label_message.text = "Store Successfuly Registered !!"
+      
+
+
+  
   def link_home_click(self, **event_args):
     """This method is called when the link is clicked"""
     open_form('register_machine')

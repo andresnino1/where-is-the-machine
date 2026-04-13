@@ -75,6 +75,10 @@ components:
     name: button_register_store
     properties: {align: center, background: 'theme:On Primary Container', bold: false, font_size: 20, foreground: '#ffffff', icon: 'fa:arrow-circle-right', role: filled-button, spacing_above: large, spacing_below: large, text: Register New Store}
     type: Button
+  - layout_properties: {grid_position: 'PCXCBX,KMBVND'}
+    name: label_message
+    properties: {align: center}
+    type: Label
   layout_properties: {slot: default}
   name: content_panel
   properties: {background: '#ffffff', col_widths: '{"CAFYVY":20,"VVBLTZ":40,"JSGKFL":20,"TAQXJI":40}'}
