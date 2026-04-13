@@ -12,6 +12,9 @@ import anvil.server
 # Here is an example - you can replace it with your own:
 #
 
+# TODO chequear la funcionalidad de registro de clientes en la base de datos
+# por ahora estuve chequeando que el sistema verificara si el nombre del store existe o no
+
 @anvil.server.callable
 def register_store(store_name, store_address, state, store_phone, store_email,  store_contact_person):
   if not(is_store_in_db(store_name)):
