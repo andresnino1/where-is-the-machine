@@ -64,10 +64,9 @@ class register_store(register_storeTemplate):
   
   def search_store(self, store_name, **event_args):
     query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
-    print(query_store)
-    # found = [(r['store'],r) for r in query_store]
-    # print(found)
-    self.store_name_repeating_panel.items = [(r['store'],r) for r in query_store]
+    store_list = [r['store'] for r in query_store]
+    print(store_list)
+    # self.store_name_repeating_panel.items = [(r['store'],r) for r in query_store]
 
     # If there is NOT an store in de database the REGISTER STORE BUTTON IS ENABLED
     if [(r['store'],r) for r in query_store] == []:
