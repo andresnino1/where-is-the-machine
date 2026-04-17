@@ -89,6 +89,17 @@ class register_store(register_storeTemplate):
       self.input_store_phone.text = ""
       self.input_store_email.text = ""
       self.data_grid_store_name.visible = False
+    else:
+      self.label_message.visible = True
+      self.label_message.background = "red"
+      self.label_message.text = new_store
+      # self.input_store_name.text = ""
+      # self.input_store_address.text = ""
+      # self.dropdown_state.selected_value = None
+      # self.input_store_contact_person.text = ""
+      # self.input_store_phone.text = ""
+      # self.input_store_email.text = ""
+      self.data_grid_store_name.visible = True
       
 
 
