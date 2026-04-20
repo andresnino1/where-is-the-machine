@@ -20,6 +20,9 @@ class register_machine(register_machineTemplate):
     self.dropdown_store.visible = False
     self.button_register_machine.visible = False
     self.label_message.visible = False
+    self.label_udi.visible = False
+    self.input_udi.visible = False
+    
   
 # ======================  Input Serial Change Function ==============================
 
@@ -32,6 +35,8 @@ class register_machine(register_machineTemplate):
     self.button_register_store.visible = False
     self.button_register_machine.visible = False
     self.label_message.visible = False
+    self.label_udi.visible = False
+    self.input_udi.visible = False
 
 # ======================  Input Serial Pressed Enter ==============================
   
@@ -108,6 +113,8 @@ class register_machine(register_machineTemplate):
       
     # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
     if [(s['serial'],s) for s in query_serial] == []:
+      self.label_udi.visible = True
+      self.input_udi.visible = True
       self.label_type.visible = True
       self.dropdown_machine_type.visible = True
       self.label_store.visible = False
@@ -124,6 +131,8 @@ class register_machine(register_machineTemplate):
       self.label_message.text = "This Machine is already in the Data Base"
       self.label_type.visible = False
       self.dropdown_machine_type.visible = False
+      self.label_udi.visible = False
+      self.input_udi.visible = False
       self.label_store.visible = False
       self.input_store.visible = False
       self.dropdown_store.visible = False
@@ -156,6 +165,7 @@ class register_machine(register_machineTemplate):
   def button_register_machine_click(self, **event_args):
     """This method is called when the button is clicked"""
     serial=self.input_serial.text.strip()
+    udi=self.input
     machine_type=self.dropdown_machine_type.selected_value
     store_name = self.dropdown_store.selected_value # return the row from stores table
 

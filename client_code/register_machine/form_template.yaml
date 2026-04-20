@@ -7,14 +7,25 @@ components:
     properties: {align: center, bold: false, font_size: 30, spacing_above: large, spacing_below: large, text: Register Machine, underline: false}
     type: Label
   - data_bindings: []
-    layout_properties: {grid_position: 'BYAHNZ,CAFYVY'}
+    layout_properties: {grid_position: 'BYAHNZ,CAFYVY WIQAJD,PKQLAW'}
     name: label_serial
     properties: {font_size: 20, text: Machine Serial Number}
     type: Label
   - data_bindings: []
+    layout_properties: {grid_position: 'BYAHNZ,CAFYVY PKKAIO,YNPSCL'}
+    name: label_udi
+    properties: {font_size: 20, text: UDI Number}
+    type: Label
+  - data_bindings: []
     event_bindings: {change: input_serial_change, lost_focus: input_serial_lost_focus, pressed_enter: input_serial_pressed_enter}
-    layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ'}
+    layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ EPIRVX,WEZDHN'}
     name: input_serial
+    properties: {background: 'theme:Light Overlay 1'}
+    type: TextBox
+  - data_bindings: []
+    event_bindings: {change: input_serial_change, lost_focus: input_serial_lost_focus, pressed_enter: input_serial_pressed_enter}
+    layout_properties: {grid_position: 'BYAHNZ,VVBLTZ MABJGB,NOPAKX'}
+    name: input_udi
     properties: {background: 'theme:Light Overlay 1'}
     type: TextBox
   - layout_properties: {grid_position: 'TBWTPK,CUXJOH PYNVIU,DRNUQT'}

@@ -78,6 +78,10 @@ db_schema:
       client_hidden: false
       name: installation_day
       type: date
+    - admin_ui: {order: 10.25, width: 200}
+      client_hidden: false
+      name: code_uwf
+      type: string
     server: full
     title: machines
   parts:
