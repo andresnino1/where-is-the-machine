@@ -165,7 +165,7 @@ class register_machine(register_machineTemplate):
   def button_register_machine_click(self, **event_args):
     """This method is called when the button is clicked"""
     serial=self.input_serial.text.strip()
-    udi=self.input
+    udi=self.input_udi.text.s
     machine_type=self.dropdown_machine_type.selected_value
     store_name = self.dropdown_store.selected_value # return the row from stores table
 
