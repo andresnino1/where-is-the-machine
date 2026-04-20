@@ -9,7 +9,7 @@ import anvil.secrets
 
 # ==================== REGISTER A MACHINE IN DB ==========================
 @anvil.server.callable
-def register_machine(serial, machine_type, store_name):
+def register_machine(serial, udi, machine_type, store_name):
   if not(is_serial_in_db(serial)):
     # los campos type_link y store_link son campos relacionados entre tablas
     # y se debe obtener TODA LA FILA con GET buscando el modelo y nombre de la tienda
@@ -18,7 +18,7 @@ def register_machine(serial, machine_type, store_name):
     store= app_tables.stores.get(store=str(store_name)) # este es un link a tabla STORES (debe ser string)
     print(type)
     print(store)
-    app_tables.machines.add_row(serial=serial, type_link=type, store_link=store)
+    app_tables.machines.add_row(serial=serial, udi=udi, type_link=type, store_link=store)
     print('registro exitoso')
     return('ok')
   else:

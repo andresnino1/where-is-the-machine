@@ -165,14 +165,16 @@ class register_machine(register_machineTemplate):
   def button_register_machine_click(self, **event_args):
     """This method is called when the button is clicked"""
     serial=self.input_serial.text.strip()
-    udi=self.input_udi.text.s
+    udi=self.input_udi.text.strip()
     machine_type=self.dropdown_machine_type.selected_value
     store_name = self.dropdown_store.selected_value # return the row from stores table
 
-    new_machine = anvil.server.call('register_machine', serial, machine_type["model"], store_name["store"])
+    new_machine = anvil.server.call('register_machine', serial, udi, machine_type["model"], store_name["store"])
     if new_machine == 'ok':
       self.label_serial.visible=False
       self.input_serial.visible=False
+      self.label_udi.visible=False
+      self.input_udi.visible=False
       self.label_type.visible=False
       self.dropdown_machine_type.visible=False
       self.label_store.visible=False
