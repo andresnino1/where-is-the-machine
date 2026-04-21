@@ -238,6 +238,6 @@ services:
 - client_config: {}
   server_config: {}
   source: /runtime/services/anvil/secrets.yml
-startup: {module: register_machine, type: form}
+startup: {module: search_machine, type: form}
 startup_form: null
 uplink_visible: true

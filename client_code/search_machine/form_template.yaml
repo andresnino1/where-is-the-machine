@@ -22,9 +22,40 @@ components:
     name: button_register_machine
     properties: {align: center, background: 'theme:On Primary Container', bold: false, font_size: 20, foreground: '#ffffff', icon: 'fa:arrow-circle-right', role: filled-button, spacing_above: large, spacing_below: large, text: Search Serial Number}
     type: Button
+  - layout_properties: {grid_position: 'FOTWDS,XYPYUY'}
+    name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+  - components:
+    - components:
+      - layout_properties: {grid_position: 'FSAGPU,ATKCPX'}
+        name: label_3
+        properties: {text: Information}
+        type: Label
+      layout_properties: {grid_position: 'HXSIMK,BQEQQF'}
+      name: outlined_card_1
+      properties: {background: 'theme:On Primary', border: '', role: outlined-card}
+      type: ColumnPanel
+    - components:
+      - layout_properties: {grid_position: 'CQXBCL,NCMHQZ'}
+        name: label_4
+        properties: {text: Service}
+        type: Label
+      layout_properties: {grid_position: 'HXSIMK,KIWFSO'}
+      name: outlined_card_4
+      properties: {background: 'theme:On Primary', role: outlined-card}
+      type: ColumnPanel
+    - layout_properties: {grid_position: 'HXSIMK,MGVGUR'}
+      name: outlined_card_2
+      properties: {background: 'theme:On Primary', role: outlined-card}
+      type: ColumnPanel
+    layout_properties: {grid_position: 'PFRHTV,UJEZME'}
+    name: column_panel_1
+    properties: {col_widths: '{"BQEQQF":20,"KIWFSO":20,"MGVGUR":20}', wrap_on: mobile}
+    type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel
-  properties: {background: '#ffffff', col_widths: '{"CAFYVY":20,"VVBLTZ":40,"BKHACR":40}'}
+  properties: {background: '#ffffff', col_widths: '{"CAFYVY":20,"VVBLTZ":40}'}
   type: ColumnPanel
 - layout_properties: {slot: nav-right}
   name: navbar_links
