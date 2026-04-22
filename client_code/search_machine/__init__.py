@@ -18,7 +18,7 @@ class search_machine(search_machineTemplate):
     # Any code you write here will run before the form opens.
 
 
-
+  @handle("input_serial", "lost_focus")
   @handle("input_serial", "pressed_enter")
   def input_serial_pressed_enter(self, **event_args):
     serial_search = self.input_serial.text.strip()
@@ -28,13 +28,30 @@ class search_machine(search_machineTemplate):
 
 # =============== SEARCH SERIAL FUNCTION =====================
 
-def search_machine_serial(self, serial_search, **event_args):
+  def search_machine_serial(self, serial_search, **event_args):
 
-  query_serial = app_tables.machines.search(serial=serial_search) # search the serial in database
+    query_serial = app_tables.machines.search(serial=serial_search) # search the serial in database
+    machines_list = [r['serial'] for r in query_serial]
 
+    # [(r['store'],r) for r in query_store]
+    print(query_serial["serial"])
+    self.repeating_panel_machines.items=machines_list
+    
   # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
-  if [(s['serial'],s) for s in query_serial] == []:
-    print("Machine is not in DB")
-    # IF serial exists, the fields are DISABLED, so the user can not register a duplicated
-  else:
-    print("Machine IS IN db")
+    if machines_list == []:
+      print("Machine is not in DB")
+      self.repeating_panel_machines.items=["No Serial Number in DB"]
+      # IF serial exists, the fields are DISABLED, so the user can not register a duplicated
+
+
+
+    #   query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
+    # store_list = [r['store'] for r in query_store]
+    # self.store_name_repeating_panel.items = store_list
+    # self.data_grid_store_name.visible=True
+
+    # # If there is NOT an store in de database the REGISTER STORE BUTTON IS ENABLED
+    # if store_list == []:
+    #   self.store_name_repeating_panel.items=['Store Is Not In Data Base']
+    #   self.data_grid_store_name.visible=True
+
