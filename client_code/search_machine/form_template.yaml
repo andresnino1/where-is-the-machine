@@ -36,7 +36,7 @@ components:
       type: Label
     - components:
       - name: repeating_panel_machines
-        properties: {item_template: search_machine.RowTemplate3}
+        properties: {item_template: search_machine.Machines_In_Repeating_Panel}
         type: RepeatingPanel
       layout_properties: {grid_position: 'MCEWVD,VXYGCH'}
       name: data_grid_machine
@@ -57,7 +57,7 @@ components:
       type: Label
     - components:
       - name: repeating_panel_repairs
-        properties: {item_template: search_machine.RowTemplate2}
+        properties: {item_template: search_machine.Repairs_In_Repeating_Panel}
         type: RepeatingPanel
       layout_properties: {grid_position: 'ODDFWJ,AFUUSA'}
       name: data_grid_repairs
