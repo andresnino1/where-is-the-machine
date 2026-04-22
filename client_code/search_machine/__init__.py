@@ -34,13 +34,14 @@ class search_machine(search_machineTemplate):
     machines_list = [r['serial'] for r in query_serial]
 
     # [(r['store'],r) for r in query_store]
-    print(query_serial["serial"])
+    # print(query_serial["serial"])
+    print(machines_list)
     self.repeating_panel_machines.items=machines_list
     
   # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
     if machines_list == []:
       print("Machine is not in DB")
-      self.repeating_panel_machines.items=["No Serial Number in DB"]
+      # self.repeating_panel_machines.items=["No Serial Number in DB"]
       # IF serial exists, the fields are DISABLED, so the user can not register a duplicated
 
 
