@@ -10,6 +10,11 @@ unique_ids:
     register_store: '1743851632258781347350050.0809'
     register_store.row_template_store_name: '1775687787352105263237006.73245'
     search_machine: '1774825363176835172827895.5508'
+    search_machine.ItemTemplate1: '1776818763082194441385484.65628'
+    search_machine.ItemTemplate2: '177681877516076190293655.76636'
+    search_machine.RowTemplate1: '177681893904718192224689.88735'
+    search_machine.RowTemplate2: '1776819064038504640828632.97577'
+    search_machine.RowTemplate3: '1776819513251370363711813.7981'
     transfer_machine: '174385158115587544810062.18051'
   modules: {}
   scripts: {}

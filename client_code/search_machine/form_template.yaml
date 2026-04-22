@@ -11,47 +11,66 @@ components:
     name: label_serial
     properties: {font_size: 20, text: Machine Serial Number}
     type: Label
+  - layout_properties: {grid_position: 'BYAHNZ,CAFYVY AITLKL,BEGWHV'}
+    name: input_store
+    properties: {}
+    type: TextBox
   - data_bindings: []
-    layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ'}
+    event_bindings: {}
+    layout_properties: {full_width_row: false, grid_position: 'BYAHNZ,VVBLTZ EILZOR,QMXQCZ'}
     name: input_serial
     properties: {background: 'theme:Light Overlay 1'}
     type: TextBox
-  - data_bindings: []
-    event_bindings: {click: button_register_machine_click}
-    layout_properties: {full_width_row: false, grid_position: 'ASAPPZ,PQNOZP'}
-    name: button_register_machine
-    properties: {align: center, background: 'theme:On Primary Container', bold: false, font_size: 20, foreground: '#ffffff', icon: 'fa:arrow-circle-right', role: filled-button, spacing_above: large, spacing_below: large, text: Search Serial Number}
-    type: Button
+  - layout_properties: {grid_position: 'BYAHNZ,VVBLTZ CPVGKQ,DVKQCH'}
+    name: drop_down_store
+    properties: {}
+    type: DropDown
   - layout_properties: {grid_position: 'FOTWDS,XYPYUY'}
     name: spacer_1
     properties: {height: 32}
     type: Spacer
   - components:
+    - layout_properties: {grid_position: 'ECKSBL,GTOBXG'}
+      name: label_customer_information
+      properties: {text: Customer Information}
+      type: Label
     - components:
-      - layout_properties: {grid_position: 'FSAGPU,ATKCPX'}
-        name: label_3
-        properties: {text: Information}
-        type: Label
-      layout_properties: {grid_position: 'HXSIMK,BQEQQF'}
-      name: outlined_card_1
-      properties: {background: 'theme:On Primary', border: '', role: outlined-card}
-      type: ColumnPanel
+      - name: repeating_panel_2
+        properties: {item_template: search_machine.RowTemplate3}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'MCEWVD,VXYGCH'}
+      name: data_grid_machine
+      properties:
+        columns:
+        - {data_key: serial, id: ONEXUG, title: Serial}
+        - {data_key: type, id: GEHOBK, title: Type}
+        - {data_key: current_location, id: ANWSAL, title: Current Location}
+        - {data_key: current_status, id: WXCYPL, title: Current Status}
+      type: DataGrid
+    - layout_properties: {grid_position: 'GGGLXB,POJACL'}
+      name: spacer_2
+      properties: {height: 32}
+      type: Spacer
+    - layout_properties: {grid_position: 'YDBWKO,HVMOWK'}
+      name: label_qa_repairs
+      properties: {text: QA and Repairs}
+      type: Label
     - components:
-      - layout_properties: {grid_position: 'CQXBCL,NCMHQZ'}
-        name: label_4
-        properties: {text: Service}
-        type: Label
-      layout_properties: {grid_position: 'HXSIMK,KIWFSO'}
-      name: outlined_card_4
-      properties: {background: 'theme:On Primary', role: outlined-card}
-      type: ColumnPanel
-    - layout_properties: {grid_position: 'HXSIMK,MGVGUR'}
-      name: outlined_card_2
-      properties: {background: 'theme:On Primary', role: outlined-card}
-      type: ColumnPanel
-    layout_properties: {grid_position: 'PFRHTV,UJEZME'}
-    name: column_panel_1
-    properties: {col_widths: '{"BQEQQF":20,"KIWFSO":20,"MGVGUR":20}', wrap_on: mobile}
+      - name: repeating_panel_1
+        properties: {item_template: search_machine.RowTemplate2}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'ODDFWJ,AFUUSA'}
+      name: data_grid_repairs
+      properties:
+        columns:
+        - {data_key: date, id: HULBWQ, title: Date}
+        - {data_key: issue, id: XRWQTT, title: Issue}
+        - {data_key: repair_status, id: ZSSPDL, title: Repair Status}
+        rows_per_page: 3
+      type: DataGrid
+    layout_properties: {grid_position: 'LVBRLW,VPSCXQ'}
+    name: info_card
+    properties: {background: 'theme:On Primary', role: outlined-card}
     type: ColumnPanel
   layout_properties: {slot: default}
   name: content_panel

@@ -14,55 +14,27 @@ class search_machine(search_machineTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.button_register_customer.visible = False
 
     # Any code you write here will run before the form opens.
 
-  def dropdown_machine_type_show(self, **event_args):
-    self.dropdown_machine_type.items = [
-      (r["model"], r) for r in app_tables.machine_type.search()
-    ]
-    # self.dropdown_machine_type.include_placeholder=True
-    # self.dropdown_machine_type.placeholder="Chose Machine Model"
-    # self.dropdown_machine_type.selected_value=""
-    """This method is called when the DropDown is shown on the screen"""
 
-  def dropdown_machine_type_change(self, **event_args):
-    """This method is called when an item is selected"""
-    row = self.dropdown_machine_type.selected_value
-    print(row["model"])
 
-  def button_register_machine_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    find_serial = app_tables.machines.get(serial=self.input_serial.text)
-    if find_serial is not None:
-      # Machine exists in database
+  @handle("input_serial", "pressed_enter")
+  def input_serial_pressed_enter(self, **event_args):
+    serial_search = self.input_serial.text.strip()
+    if serial_search != "":
+      self.search_machine_serial(serial_search) # function that search machine serial
 
-      print("serial si existe")
-    else:
-      # Machine is not in database -- need to be registered
-      anvil.server.call(
-        "register_machine",
-        self.input_serial.text,
-        self.dropdown_machine_type.selected_value,
-      )
 
-  def input_customer_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
-    query = self.input_customer.text.strip()
+# =============== SEARCH SERIAL FUNCTION =====================
 
-    if len(query) > 1:
-      results = app_tables.stores.search(store=q.ilike(f"%{query}%"))
-      self.drop_down_customer.items = [(r["store"], r) for r in results]
-      self.drop_down_customer.visible = True
-      self.button_register_machine.visible = True
-      self.button_register_customer.visible = False
+def search_machine_serial(self, serial_search, **event_args):
 
-      if [(r["store"], r) for r in results] == []:
-        self.drop_down_customer.visible = False
-        self.button_register_machine.visible = False
-        self.button_register_customer.visible = True
+  query_serial = app_tables.machines.search(serial=serial_search) # search the serial in database
 
-    else:
-      self.drop_down_customer.items = []
-      self.drop_down_customer.visible = False
+  # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
+  if [(s['serial'],s) for s in query_serial] == []:
+    print("Machine is not in DB")
+    # IF serial exists, the fields are DISABLED, so the user can not register a duplicated
+  else:
+    print("Machine IS IN db")
