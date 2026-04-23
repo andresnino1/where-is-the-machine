@@ -26,6 +26,11 @@ class search_machine(search_machineTemplate):
     if serial_search != "":
       self.search_machine_serial(serial_search) # function that search machine serial
 
+  @handle("input_serial", "change")
+  def input_serial_focus(self, **event_args):
+    self.message_1.visible=False
+    self.data_grid_1.visible=True
+
 
 # =============== SEARCH SERIAL FUNCTION =====================
 
@@ -57,10 +62,5 @@ class search_machine(search_machineTemplate):
     #   self.store_name_repeating_panel.items=['Store Is Not In Data Base']
     #   self.data_grid_store_name.visible=True
 
-  @handle("input_serial", "change")
-  def input_serial_focus(self, **event_args):
-    """This method is called when the TextBox gets focus"""
-    self.message_1.visible=False
-    self.data_grid_1.visible=True
-
+ 
  
