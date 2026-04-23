@@ -14,6 +14,7 @@ class search_machine(search_machineTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.message_1.visible = False
 
     # Any code you write here will run before the form opens.
 
@@ -30,17 +31,17 @@ class search_machine(search_machineTemplate):
 
   def search_machine_serial(self, serial_search, **event_args):
 
-    query_serial = app_tables.machines.search(serial=serial_search) # search the serial in database
-    machines_list = [r['serial'] for r in query_serial]
-
-    # [(r['store'],r) for r in query_store]
-    # print(query_serial["serial"])
-    print(machines_list)
+    machines_list = app_tables.machines.search(serial=serial_search) # search the serial in database
     self.repeating_panel_machines.items=machines_list
+    # machines_list return an object with the complete row information
+    # and this object is send to repeating panel machines, so when open
+    # the form RowTemplate1 the information will be recovered using self.item['name of column']
     
-  # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
-    if machines_list == []:
-      print("Machine is not in DB")
+    # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
+    if list(machines_list) == []:
+      self.data_grid_1.visible=False
+      self.message_1.visible=True
+      self.message_1.text = "Machine is not in Data Base"
       # self.repeating_panel_machines.items=["No Serial Number in DB"]
       # IF serial exists, the fields are DISABLED, so the user can not register a duplicated
 
@@ -56,3 +57,10 @@ class search_machine(search_machineTemplate):
     #   self.store_name_repeating_panel.items=['Store Is Not In Data Base']
     #   self.data_grid_store_name.visible=True
 
+  @handle("input_serial", "change")
+  def input_serial_focus(self, **event_args):
+    """This method is called when the TextBox gets focus"""
+    self.message_1.visible=False
+    self.data_grid_1.visible=True
+
+ 

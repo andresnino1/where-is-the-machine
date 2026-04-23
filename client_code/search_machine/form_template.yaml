@@ -35,7 +35,7 @@ components:
       properties: {text: Customer Information}
       type: Label
     - components:
-      - name: repeating_panel_1
+      - name: repeating_panel_machines
         properties: {item_template: search_machine.RowTemplate1}
         type: RepeatingPanel
       layout_properties: {grid_position: 'YNYTII,MTVJJM'}
@@ -44,10 +44,13 @@ components:
         columns:
         - {data_key: serial, id: KKCSMK, title: serial}
         - {data_key: type, id: MEUWNP, title: type}
-        - {data_key: type_link, id: OZJIXY, title: type_link}
-        - {data_key: current_location, id: YNWNZL, title: current_location}
-        - {data_key: current_status, id: TFHYWC, title: current_status}
+        - {data_key: current_location, id: YNWNZL, title: current location}
+        - {data_key: current_status, id: TFHYWC, title: current status}
       type: DataGrid
+    - layout_properties: {grid_position: 'WMHLIC,WCRXZX'}
+      name: message_1
+      properties: {}
+      type: Label
     - layout_properties: {grid_position: 'GGGLXB,POJACL'}
       name: spacer_2
       properties: {height: 32}
