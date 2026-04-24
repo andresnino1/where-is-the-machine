@@ -1,0 +1,15 @@
+components:
+- layout_properties: {column: VWVIVC}
+  name: date
+  properties: {}
+  type: Link
+- layout_properties: {column: UBWFRS}
+  name: issue
+  properties: {}
+  type: Label
+- layout_properties: {column: XHMAZY}
+  name: repair_status
+  properties: {}
+  type: Label
+container: {type: DataRowPanel}
+is_package: true

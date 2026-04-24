@@ -61,7 +61,7 @@ components:
       type: Label
     - components:
       - name: repeating_panel_repairs
-        properties: {item_template: search_machine.RowTemplate1}
+        properties: {item_template: search_machine.row_template_repairs}
         type: RepeatingPanel
       layout_properties: {grid_position: 'WFHPMQ,PEWSEU'}
       name: data_grid_2

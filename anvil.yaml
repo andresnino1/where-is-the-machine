@@ -4,6 +4,7 @@ db_schema:
     client: none
     columns:
     - admin_ui: {width: 200}
+      client_hidden: null
       name: name
       type: string
     server: full
@@ -12,9 +13,11 @@ db_schema:
     client: search
     columns:
     - admin_ui: {width: 200}
+      client_hidden: null
       name: model
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
       name: brand
       type: string
     server: full
@@ -23,75 +26,90 @@ db_schema:
     client: search
     columns:
     - admin_ui: {width: 200}
+      client_hidden: null
       name: serial
       type: string
     - admin_ui: {width: 200}
+      client_hidden: false
+      name: udi
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
       name: type
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
       name: type_link
       target: machine_type
       type: link_single
     - admin_ui: {width: 341}
+      client_hidden: null
       name: store
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
       name: store_link
       target: stores
       type: link_single
-    - admin_ui: {width: 200}
-      name: repairs
-      type: string
-    - admin_ui: {order: 6.25, width: 200}
+    - admin_ui: {order: 0, width: 200}
       client_hidden: false
-      name: code_angio
+      name: repairs_text
       type: string
+    - admin_ui: {order: 2, width: 200}
+      client_hidden: false
+      name: repairs
+      target: repairs
+      type: link_multiple
     - admin_ui: {width: 200}
+      client_hidden: null
       name: param_file
       type: string
-    - admin_ui: {order: 10.75, width: 200}
-      client_hidden: false
-      name: current_location
-      type: string
     - admin_ui: {width: 200}
-      name: code_topo
-      type: string
-    - admin_ui: {order: 10.5, width: 200}
-      client_hidden: false
-      name: transfers
-      type: string
-    - admin_ui: {order: 5.5, width: 200}
-      client_hidden: false
+      client_hidden: null
       name: calib_file
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
+      name: code_angio
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: code_topo
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
       name: code_bio
       type: string
     - admin_ui: {width: 200}
-      name: current_status
-      type: string
-    - admin_ui: {order: -0.75, width: 200}
-      client_hidden: false
-      name: udi
-      type: string
-    - admin_ui: {order: 12, width: 200}
-      client_hidden: false
-      name: installation_day
-      type: date
-    - admin_ui: {order: 10.25, width: 200}
       client_hidden: false
       name: code_uwf
       type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: transfers
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: current_location
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: current_status
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: installation_day
+      type: date
     server: full
     title: machines
   parts:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {width: 200}
       client_hidden: false
       name: part_number
       type: string
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {width: 200}
       client_hidden: false
       name: part_description
       type: string
@@ -101,84 +119,94 @@ db_schema:
     client: none
     columns:
     - admin_ui: {width: 200}
+      client_hidden: null
       name: repair_status
       type: string
     server: full
     title: repair_status
   repairs:
-    client: none
+    client: search
     columns:
     - admin_ui: {width: 200}
+      client_hidden: null
       name: serial
       type: string
-    - admin_ui: {width: 200}
+    - admin_ui: {order: -2, width: 200}
+      client_hidden: false
       name: serial_link
       target: machines
       type: link_single
+    - admin_ui: {width: 200}
+      client_hidden: false
+      name: date
+      type: date
     - admin_ui: {width: 140}
+      client_hidden: null
       name: optopol_ticket
       type: string
-    - admin_ui: {order: 3, width: 230}
-      client_hidden: false
+    - admin_ui: {width: 230}
+      client_hidden: null
       name: internal_tiket_number
       type: string
     - admin_ui: {width: 310}
+      client_hidden: null
       name: issue
       type: string
     - admin_ui: {width: 200}
-      name: repair_status
-      type: string
-    - admin_ui: {width: 200}
-      name: repair_status_link
-      target: repair_status
-      type: link_single
-    - admin_ui: {width: 200}
-      name: technician
-      type: string
-    - admin_ui: {width: 200}
-      name: technician_link
-      target: technicians
-      type: link_single
-    - admin_ui: {order: 3.75, width: 200}
       client_hidden: false
       name: parts
       target: parts
       type: link_multiple
-    - admin_ui: {order: 1, width: 200}
-      client_hidden: false
-      name: date
-      type: date
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: repair_status
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: repair_status_link
+      target: repair_status
+      type: link_single
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: technician
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: technician_link
+      target: technicians
+      type: link_single
     server: full
     title: repairs
   stores:
     client: search
     columns:
     - admin_ui: {width: 331}
+      client_hidden: null
       name: store
       type: string
-    - admin_ui: {order: 4.5, width: 200}
-      client_hidden: false
-      name: state
-      type: string
-    - admin_ui: {order: 7, width: 200}
-      client_hidden: false
-      name: transfers
-      type: string
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {width: 200}
       client_hidden: false
       name: store_address
       type: string
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: state
+      type: string
+    - admin_ui: {width: 200}
       client_hidden: false
       name: store_phone
       type: string
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {width: 200}
       client_hidden: false
       name: store_email
       type: string
-    - admin_ui: {order: 6.5, width: 200}
+    - admin_ui: {width: 200}
       client_hidden: false
       name: contact_person
+      type: string
+    - admin_ui: {width: 200}
+      client_hidden: null
+      name: transfers
       type: string
     server: full
     title: stores
@@ -186,6 +214,7 @@ db_schema:
     client: none
     columns:
     - admin_ui: {width: 200}
+      client_hidden: null
       name: name
       type: string
     server: full
@@ -194,25 +223,32 @@ db_schema:
     client: none
     columns:
     - admin_ui: {width: 200}
+      client_hidden: null
       name: date
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
       name: serial
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
       name: serial_link
       target: machines
       type: link_single
     - admin_ui: {width: 200}
+      client_hidden: null
       name: status
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
       name: technicians
       type: string
     - admin_ui: {width: 200}
+      client_hidden: null
       name: store
       type: string
-    - admin_ui: {order: 5, width: 267}
+    - admin_ui: {width: 267}
+      client_hidden: null
       name: notes
       type: string
     server: full

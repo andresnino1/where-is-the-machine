@@ -42,8 +42,12 @@ class search_machine(search_machineTemplate):
     # and this object is send to repeating panel machines, so when open
     # the form RowTemplate1 the information will be recovered using self.item['name of column']
 
-    repairs_list = app_tables.repairs.search(serial_link=serial_search)
-    print(repairs_list)
+    for machine in machines_list:
+      repairs= machine['repairs']
+      for repair in repairs:
+        print(repair['date'])
+        print(repair['issue'])
+        print(repair['repair_status_link'])
 
     
     # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
