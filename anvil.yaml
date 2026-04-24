@@ -100,6 +100,11 @@ db_schema:
       client_hidden: false
       name: installation_day
       type: date
+    - admin_ui: {order: 3, width: 200}
+      client_hidden: false
+      name: repairs_link_1
+      target: repairs
+      type: link_single
     server: full
     title: machines
   parts:

@@ -11,4 +11,9 @@ class row_template_repairs(row_template_repairsTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
+    print("imprimiendo self item:")
+    repairs = self.item['repairs_link']
+    for repair in repairs:
+      print(repair['date'])
+      print(repair['issue'])
     # Any code you write here will run before the form opens.
