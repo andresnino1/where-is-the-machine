@@ -1,0 +1,22 @@
+components:
+- layout_properties: {column: MEUWNP}
+  name: type
+  properties: {}
+  type: Label
+- layout_properties: {column: YNWNZL}
+  name: current_location
+  properties: {}
+  type: Label
+- layout_properties: {column: TFHYWC}
+  name: current_status
+  properties: {}
+  type: Label
+- event_bindings: {}
+  layout_properties: {column: KKCSMK}
+  name: link_serial
+  properties: {}
+  type: Link
+container:
+  properties: {bold: false}
+  type: DataRowPanel
+is_package: true

@@ -115,9 +115,6 @@ db_schema:
       name: serial_link
       target: machines
       type: link_single
-    - admin_ui: {width: 200}
-      name: date
-      type: string
     - admin_ui: {width: 140}
       name: optopol_ticket
       type: string
@@ -147,6 +144,10 @@ db_schema:
       name: parts
       target: parts
       type: link_multiple
+    - admin_ui: {order: 1, width: 200}
+      client_hidden: false
+      name: date
+      type: date
     server: full
     title: repairs
   stores:
