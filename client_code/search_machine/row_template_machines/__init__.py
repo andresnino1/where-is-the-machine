@@ -15,8 +15,10 @@ class row_template_machines(row_template_machinesTemplate):
     self.current_location.text=self.item['current_location']
     self.current_status.text=self.item['current_status']
     
-    # print("imprimiendo self item:")
-    # print(self.item)
+    print("imprimiendo self item:")
+    repairs = self.item[]
+    print(self.item['repairs_link'])
+    # print(self.item['repairs']['issue'])
     # Any code you write here will run before the form opens.
 
   @handle("link_serial", "click")

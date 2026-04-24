@@ -57,7 +57,7 @@ db_schema:
       type: string
     - admin_ui: {order: 2, width: 200}
       client_hidden: false
-      name: repairs
+      name: repairs_link
       target: repairs
       type: link_multiple
     - admin_ui: {width: 200}
