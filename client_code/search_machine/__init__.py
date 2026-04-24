@@ -8,7 +8,7 @@ import anvil.server
 # notas to do
 # implementar en el formulario que los campos no este activos si el serial existe
 # esto para que no haya la opcion de agregar el mismo serial
-
+# hay error cuando el numero de serial no existe
 
 class search_machine(search_machineTemplate):
   def __init__(self, **properties):
@@ -36,13 +36,16 @@ class search_machine(search_machineTemplate):
 
   def search_machine_serial(self, serial_search, **event_args):
 
-    machines_list = app_tables.machines.search(serial=serial_search) # search the serial in database
-    self.repeating_panel_machines.items=machines_list
+    machines_list = app_tables.machines.get(serial=serial_search) # search the serial in database
+    self.repeating_panel_machines.items=[machines_list]
+    self.repeating_panel_repairs.items=machines_list['repairs_link']
+    
+    
     # machines_list return an object with the complete row information
     # and this object is send to repeating panel machines, so when open
     # the form RowTemplate1 the information will be recovered using self.item['name of column']
 
-    repairs_list
+   
     # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
     if list(machines_list) == []:
       self.data_grid_1.visible=False
