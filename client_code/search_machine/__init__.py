@@ -6,18 +6,12 @@ from anvil.tables import app_tables
 import anvil.server
 
 # notas to do
-# implementar en el formulario que los campos no este activos si el serial existe
-# esto para que no haya la opcion de agregar el mismo serial
-# hay error cuando el numero de serial no existe
 
 class search_machine(search_machineTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.message_1.visible = False
-
-    # Any code you write here will run before the form opens.
-
+    self.info_card_2.visible=False
 
   @handle("input_serial", "lost_focus")
   @handle("input_serial", "pressed_enter")
@@ -28,8 +22,10 @@ class search_machine(search_machineTemplate):
 
   @handle("input_serial", "change")
   def input_serial_focus(self, **event_args):
-    self.message_1.visible=False
-    self.data_grid_1.visible=True
+    self.info_card_2.visible=False
+    self.info_card.visible=True
+    self.repeating_panel_machines.visible=False
+    self.repeating_panel_repairs.visible=False
 
 
 # =============== SEARCH SERIAL FUNCTION =====================
@@ -37,20 +33,26 @@ class search_machine(search_machineTemplate):
   def search_machine_serial(self, serial_search, **event_args):
 
     machines_list = app_tables.machines.get(serial=serial_search) # search the serial in database
-    self.repeating_panel_machines.items=[machines_list]
-    self.repeating_panel_repairs.items=machines_list['repairs_link']
-    
     
     # machines_list return an object with the complete row information
     # and this object is send to repeating panel machines, so when open
     # the form RowTemplate1 the information will be recovered using self.item['name of column']
-
    
-    # IF serial DOESN'T EXIST - then the fields are enabled to register the new machine
-    if list(machines_list) == []:
-      self.data_grid_1.visible=False
-      self.message_1.visible=True
+    # IF serial DOESN'T EXIST
+    if machines_list == None:
+      self.info_card_2.visible=True
+      self.info_card.visible=False
       self.message_1.text = "Machine is not in Data Base"
+
+    # If serial number exists, the machine_list is send to repeating_panel
+    # the data sent is now in row_template_machines and row_template_repairs
+    # the data will be display in the repeating panels using self.item[<column name>]
+    else:
+      self.info_card.visible=True
+      self.repeating_panel_machines.visible=True
+      self.repeating_panel_repairs.visible=True
+      self.repeating_panel_machines.items=[machines_list]
+      self.repeating_panel_repairs.items=machines_list['repairs_link']
       # self.repeating_panel_machines.items=["No Serial Number in DB"]
       # IF serial exists, the fields are DISABLED, so the user can not register a duplicated
 

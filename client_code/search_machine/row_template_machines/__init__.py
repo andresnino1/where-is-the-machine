@@ -13,6 +13,7 @@ class row_template_machines(row_template_machinesTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # print(self.item['serial'])
+    
     self.link_serial.text=self.item['serial']
     self.type.text=self.item['type_link']['model']
     self.current_location.text=self.item['current_location']
