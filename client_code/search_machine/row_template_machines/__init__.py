@@ -5,8 +5,6 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
-# todo, hay un error cuando el numero de serial no existe en db
-# error es 'NoneType' does not support indexing
 
 class row_template_machines(row_template_machinesTemplate):
   def __init__(self, **properties):

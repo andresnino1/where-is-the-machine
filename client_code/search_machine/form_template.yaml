@@ -11,9 +11,10 @@ components:
     name: label_serial
     properties: {font_size: 20, text: Machine Serial Number}
     type: Label
-  - layout_properties: {grid_position: 'BYAHNZ,CAFYVY AITLKL,BEGWHV'}
+  - event_bindings: {}
+    layout_properties: {grid_position: 'BYAHNZ,CAFYVY AITLKL,BEGWHV'}
     name: input_store
-    properties: {}
+    properties: {placeholder: Search Store's Name}
     type: TextBox
   - data_bindings: []
     event_bindings: {}
@@ -21,7 +22,8 @@ components:
     name: input_serial
     properties: {background: 'theme:Light Overlay 1'}
     type: TextBox
-  - layout_properties: {grid_position: 'BYAHNZ,VVBLTZ CPVGKQ,DVKQCH'}
+  - event_bindings: {}
+    layout_properties: {grid_position: 'BYAHNZ,VVBLTZ CPVGKQ,DVKQCH'}
     name: drop_down_store
     properties: {}
     type: DropDown
