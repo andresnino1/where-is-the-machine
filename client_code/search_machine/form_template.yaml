@@ -57,6 +57,7 @@ components:
         - {data_key: type, id: MEUWNP, title: type}
         - {data_key: current_location, id: YNWNZL, title: current location}
         - {data_key: current_status, id: TFHYWC, title: current status}
+        rows_per_page: 5
       type: DataGrid
     - layout_properties: {grid_position: 'GGGLXB,POJACL'}
       name: spacer_2
@@ -77,6 +78,7 @@ components:
         - {data_key: date, id: VWVIVC, title: date}
         - {data_key: issue, id: UBWFRS, title: issue}
         - {data_key: repair_status_link, id: XHMAZY, title: repair_status_link}
+        rows_per_page: 5
       type: DataGrid
     layout_properties: {grid_position: 'LVBRLW,VPSCXQ'}
     name: info_card

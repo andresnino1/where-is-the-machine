@@ -6,6 +6,11 @@ from anvil.tables import app_tables
 import anvil.server
 
 # notas to do
+# cuando se busca le nombre del store, aparece la lista de las maquinas
+# asignadas al store desde el inicio, pero si yo registro una maquina
+# pero aun no se a que store pertenece, se registra a optopol anz
+# pero luego al mover la ubicacion despues de estar registrada o de que
+# entre a reparacion 
 
 class search_machine(search_machineTemplate):
   def __init__(self, **properties):
