@@ -93,5 +93,4 @@ class search_machine(search_machineTemplate):
 
     # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
     # To ensure the unique value in the list is selected.
-    
-
+  
