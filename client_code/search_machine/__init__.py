@@ -17,6 +17,7 @@ class search_machine(search_machineTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.info_card_2.visible=False
+    
 
   @handle("input_serial", "lost_focus")
   @handle("input_serial", "pressed_enter")
@@ -31,15 +32,24 @@ class search_machine(search_machineTemplate):
     self.info_card.visible=True
     self.repeating_panel_machines.visible=False
     self.repeating_panel_repairs.visible=False
+    self.input_store.text = ""
+    self.drop_down_store.items=[]
 
   @handle("input_store", "change")
   def input_store_change(self, **event_args):
-    """This method is called when the text in this text box is edited"""
+    self.info_card_2.visible=False
+    self.info_card.visible=True
     self.repeating_panel_machines.visible=False
+    self.repeating_panel_repairs.visible=False
+    self.input_serial.text=""
+    self.drop_down_store.items=[]
+
+  @handle("input_store", "lost_focus")
+  @handle("input_store", "pressed_enter")
+  def input_store_pressed_enter(self, **event_args):
+    """This method is called when the user presses Enter in this text box"""
     store_name = self.input_store.text.strip()
-  
-    if len(store_name) > 1:
-      self.search_store(store_name) # function search the store name in database
+    self.search_store(store_name) # function search the store name in database
 
   @handle("drop_down_store", "change")
   def drop_down_store_change(self, **event_args):
@@ -88,16 +98,30 @@ class search_machine(search_machineTemplate):
 
   def search_store(self, store_name, **event_args):
     query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
-    self.drop_down_store.items = [(r['store'],r) for r in query_store]
+    items = [(r['store'],r) for r in query_store]
+
+    if items:
+      self.drop_down_store.items = items
+      self.drop_down_store_change()
+    else:
+      self.drop_down_store.items = []
+      self.repeating_panel_machines.visible=False
+
+    # if items:
+    #   self.drop_down_store.selected_value = items[0][1]
 
     # Check if there is the store in the database
-    if [(r['store'],r) for r in query_store]:
-      if len([(r['store'],r) for r in query_store]) ==1:
-        print('there is store in database')
-        self.drop_down_store_change()
-    else:  
-      print('no store to show')
+    # if items:
+    #   if len(items) ==1:
+    #     print('there is store in database')
+    #     self.drop_down_store_change()
+    #   else:
+    #     self.drop_down_store.selected_value=items[0][1]
+    # else:  
+    #   print('no store to show')
 
     # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
     # To ensure the unique value in the list is selected.
+
+ 
 
