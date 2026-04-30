@@ -35,6 +35,7 @@ class search_machine(search_machineTemplate):
   @handle("input_store", "change")
   def input_store_change(self, **event_args):
     """This method is called when the text in this text box is edited"""
+    self.repeating_panel_machines.visible=False
     store_name = self.input_store.text.strip()
   
     if len(store_name) > 1:
@@ -42,13 +43,20 @@ class search_machine(search_machineTemplate):
 
   @handle("drop_down_store", "change")
   def drop_down_store_change(self, **event_args):
+    self.repeating_panel_machines.visible=True
     store_name = self.drop_down_store.selected_value
+    
     if store_name:
-      machines_in_store = app_tables.machines.search(store_link=store_name)
-      if machines_in_store:
-        self.repeating_panel_machines.items=machines_in_store
+      machines_in_store = app_tables.machines.search(store_link=store_name) # list of all devices in the store
+      is_workshop = store_name["is_workshop"] # check if the store is label like workshop
+      if is_workshop:
+        machines_in_workshop_location = app_tables.machines.search(current_location_link=store_name) # list of all devices currently located in the workshop location
+        self.repeating_panel_machines.items=machines_in_workshop_location # this is workshop and will show all the devices at workshop"
       else:
-        print ('the store doesnt have devices registered')
+        if machines_in_store:
+          self.repeating_panel_machines.items=machines_in_store # if there is machines in the store, display them in repeating panel
+        else:
+          print ('the store doesnt have devices registered')
 
 
 
@@ -81,11 +89,11 @@ class search_machine(search_machineTemplate):
   def search_store(self, store_name, **event_args):
     query_store = app_tables.stores.search(store=q.ilike(f"%{store_name}%"))
     self.drop_down_store.items = [(r['store'],r) for r in query_store]
-    # self.drop_down_store.visible = True
 
     # Check if there is the store in the database
     if [(r['store'],r) for r in query_store]:
       if len([(r['store'],r) for r in query_store]) ==1:
+        print('there is store in database')
         self.drop_down_store_change()
     else:  
       print('no store to show')
@@ -93,7 +101,3 @@ class search_machine(search_machineTemplate):
     # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
     # To ensure the unique value in the list is selected.
 
-  # ======================= Is Store a Workshop ======================
-  def is_workshop(self, store_name, **event_args):
-    get_store=app_tables.stores.get(store=store_name)
-    print
