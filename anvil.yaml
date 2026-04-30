@@ -105,6 +105,11 @@ db_schema:
       name: repairs_link_1
       target: repairs
       type: link_single
+    - admin_ui: {order: 10.875, width: 200}
+      client_hidden: false
+      name: current_location_link
+      target: stores
+      type: link_single
     server: full
     title: machines
   parts:
