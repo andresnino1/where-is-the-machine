@@ -12,16 +12,25 @@ import anvil.server
 # pero luego al mover la ubicacion despues de estar registrada o de que
 # entre a reparacion 
 
+# cuando hago una busqueda de serial, y luego una busqueda de nombre de estore.. 
+# pero dejo en blanco y no pongo nada, el cursor salta (pierde foco) a "serial input" 
+# pero queda el listado de el panel de repairs con los datos de la busqueda anterior
+
 class search_machine(search_machineTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     self.info_card_2.visible=False
+    self.input_serial.select()
     
-
+  @handle("input_serial", "show")
+  def input_serial_show(self, **event_args):
+    self.input_serial.focus() # focus the cursor in the serial input
+    
   @handle("input_serial", "lost_focus")
   @handle("input_serial", "pressed_enter")
   def input_serial_pressed_enter(self, **event_args):
+    self.input_store.focus() # focus the cursor after serial input
     serial_search = self.input_serial.text.strip()
     if serial_search != "":
       self.search_machine_serial(serial_search) # function that search machine serial
@@ -47,7 +56,7 @@ class search_machine(search_machineTemplate):
   @handle("input_store", "lost_focus")
   @handle("input_store", "pressed_enter")
   def input_store_pressed_enter(self, **event_args):
-    """This method is called when the user presses Enter in this text box"""
+    self.input_serial.text=""
     store_name = self.input_store.text.strip()
     self.search_store(store_name) # function search the store name in database
 
@@ -122,6 +131,8 @@ class search_machine(search_machineTemplate):
 
     # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
     # To ensure the unique value in the list is selected.
+
+
 
  
 
