@@ -44,10 +44,9 @@ class search_machine(search_machineTemplate):
   def drop_down_store_change(self, **event_args):
     store_name = self.drop_down_store.selected_value
     if store_name:
-      # if there is a store in the database the register machine button is enabled
-      store_with_machine = app_tables.machines.search(store_link=store_name)
-      if store_with_machine:
-        self.repeating_panel_machines.items=store_with_machine
+      machines_in_store = app_tables.machines.search(store_link=store_name)
+      if machines_in_store:
+        self.repeating_panel_machines.items=machines_in_store
       else:
         print ('the store doesnt have devices registered')
 
@@ -93,4 +92,8 @@ class search_machine(search_machineTemplate):
 
     # If there is an EXACT MATCH in the query the function dropdown_store_chage is trigger manualy
     # To ensure the unique value in the list is selected.
-  
+
+  # ======================= Is Store a Workshop ======================
+  def is_workshop(self, store_name, **event_args):
+    get_store=app_tables.stores.get(store=store_name)
+    print

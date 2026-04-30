@@ -110,8 +110,23 @@ db_schema:
       name: current_location_link
       target: stores
       type: link_single
+    - admin_ui: {order: 13, width: 200}
+      client_hidden: false
+      name: membership
+      target: membership
+      type: link_single
     server: full
     title: machines
+  membership:
+    client: none
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      client_hidden: false
+      name: membership
+      type: string
+    indexes: []
+    server: full
+    title: membership
   parts:
     client: none
     columns:
@@ -218,6 +233,10 @@ db_schema:
       client_hidden: null
       name: transfers
       type: string
+    - admin_ui: {order: 8, width: 200}
+      client_hidden: false
+      name: is_workshop
+      type: bool
     server: full
     title: stores
   technicians:
