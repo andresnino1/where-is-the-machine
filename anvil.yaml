@@ -251,9 +251,9 @@ db_schema:
   transfers:
     client: none
     columns:
-    - admin_ui: {width: 200}
-      client_hidden: null
-      name: date
+    - admin_ui: {order: 0, width: 200}
+      client_hidden: false
+      name: date_
       type: string
     - admin_ui: {width: 200}
       client_hidden: null
@@ -280,6 +280,10 @@ db_schema:
       client_hidden: null
       name: notes
       type: string
+    - admin_ui: {order: 0.5, width: 200}
+      client_hidden: false
+      name: date
+      type: date
     server: full
     title: transfers
 dependencies: []
